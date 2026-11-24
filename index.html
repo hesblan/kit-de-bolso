@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0f0c"><title>Kit de Bolso do Técnico</title>
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icone.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icone-192.png">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Kit de Bolso">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:ui-monospace,monospace;background:#0b0f0c;color:#b6f5c8;padding:0 8px 24px}
+header{position:sticky;top:0;background:#0b0f0c;padding:8px 0 6px;z-index:5;border-bottom:1px solid #1f3a27}
+h1{font-size:15px;color:#5dff8f;margin:0 0 2px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+#st{font-size:10px;color:#7a9c85}#redeAt{font-size:10px;color:#7a9c85;margin:0 0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav{display:flex;gap:4px;overflow-x:auto}nav button{flex:none}nav button.on{background:#2e7a47;color:#fff}
+.c{border:1px solid #1f3a27;border-radius:10px;padding:9px;margin:9px 0;background:#0f1712}
+.c h2{font-size:13px;margin:0 0 3px;color:#7dffa6}.c p{font-size:11px;color:#7a9c85;margin:0 0 6px}
+button{background:#163d24;color:#c9ffd9;border:1px solid #2e7a47;border-radius:6px;padding:7px 9px;font:inherit;font-size:12px;margin:2px 3px 3px 0;cursor:pointer}
+button.r{background:#4a1616;border-color:#a33}button.y{background:#4a3f16;border-color:#aa3}button:disabled{opacity:.5}
+#instalar,#ajudaB{font-size:10px;padding:4px 7px;margin:0}#ajudaB{background:#2e7a47;color:#fff}
+#tut{position:fixed;left:6px;right:6px;bottom:6px;max-height:75vh;overflow:auto;background:#0f1712;border:2px solid #5dff8f;border-radius:12px;padding:10px;z-index:8;box-shadow:0 0 30px #000}#tut h2{font-size:14px;color:#7dffa6;margin:6px 0}#tut p{font-size:12.5px;line-height:1.45}#tut .tb button.on{background:#2e7a47;color:#fff}details summary{cursor:pointer;color:#c9ffd9}
+input,select{background:#050806;color:#c9ffd9;border:1px solid #2e7a47;border-radius:6px;padding:7px;font:inherit;font-size:12px;width:100%;margin-bottom:5px}
+pre{white-space:pre-wrap;word-break:break-all;font-size:10.5px;background:#050806;padding:6px;border-radius:6px;max-height:300px;overflow:auto;margin:4px 0 0;min-height:12px}
+table{width:100%;border-collapse:collapse;font-size:10px}td,th{padding:3px 4px;border-bottom:1px solid #15261b;text-align:left;vertical-align:top}th{color:#7dffa6;position:sticky;top:0;background:#0f1712}
+.tw{max-height:420px;overflow:auto}.bar{height:6px;background:#2e7a47;border-radius:3px;margin:1px 0 4px}.g{display:grid;grid-template-columns:1fr 1fr;gap:6px}.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.k{background:#050806;border-radius:6px;padding:6px;text-align:center;overflow:hidden}.k b{display:block;font-size:17px;color:#5dff8f;word-break:break-all}.k span{font-size:9px;color:#7a9c85}
+#full{position:fixed;inset:0;display:none;z-index:9}canvas{width:100%;height:90px;background:#050806;border-radius:6px}
+tr.TLS td,tr.HTTPS td{color:#9fd7ff}tr.DNS td{color:#ffe08a}tr.HTTP td{color:#ff9f9f}
+.al{font-size:11px;padding:5px 7px;border-radius:6px;margin:3px 0;border-left:3px solid}
+.alto{background:#2a0e0e;border-color:#f44}.medio{background:#2a230e;border-color:#fb3}.baixo{background:#0e2a18;border-color:#3f6}
+.aviso{font-size:11px;color:#ffd27a;background:#2a230e;border:1px solid #6b5a1f;border-radius:8px;padding:7px;margin:8px 0}
+a.bt{display:inline-block;background:#163d24;color:#c9ffd9;border:1px solid #2e7a47;border-radius:6px;padding:8px 10px;font-size:12px;margin:5px 4px 0 0;text-decoration:none}
+#off{font-size:11px;color:#ffd27a;background:#2a0e0e;border:1px solid #a33;border-radius:8px;padding:7px;margin:4px 0}
+.led{display:inline-block;width:8px;height:8px;border-radius:50%;background:#3f6;margin-right:4px;animation:pulse 2s infinite}@keyframes pulse{50%{opacity:.3}}
+@media print{header,nav,.c:not(#rel){display:none}#rel{border:0}}
+</style></head><body>
+<header><h1><span>▓ Kit de Bolso</span><span><button id="ajudaB" data-f="ajuda" data-a="[&quot;passos&quot;]">❓ Ajuda</button> <button id="instalar" data-f="instalar" hidden>⬇ Instalar app</button> <span id="st">conectando…</span></span></h1><div id="redeAt"></div><div id="off" hidden>⚠ O servidor do Kit parou. <a class="bt" href="intent:#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.termux;component=com.termux/.app.TermuxActivity;end">▶ Abrir o Termux</a> <a class="bt" href="/">Tentar de novo</a></div><nav id="nav"></nav></header>
+<main id="main"></main><div id="full"></div><div id="tut" hidden></div>
+<script>
+const TOKEN=/*KIT_TOKEN*/"";
+// Sem token injetado = página aberta fora do servidor (arquivo ou outro site):
+// só as ferramentas que rodam no próprio navegador funcionam.
+const SERVIDOR=!!TOKEN,SEM_SRV='Requer o servidor do Kit rodando no Termux (comando: kit).';
+const $=s=>document.querySelector(s);
+// --- escape de HTML: usar em TODO valor dinâmico vindo da rede/captura
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const H={'X-Kit-Token':TOKEN};
+async function apiGET(p,a){if(!SERVIDOR)return{erro:SEM_SRV};const u=p+(a!==undefined&&a!==''?(p.includes('?')?'&':'?')+'a='+encodeURIComponent(a):'');const r=await fetch(u,{headers:H});return r.json()}
+async function apiPOST(p,body){if(!SERVIDOR)return{erro:SEM_SRV};const r=await fetch(p,{method:'POST',headers:{...H,'Content-Type':'application/json'},body:JSON.stringify(body||{})});return r.json()}
+const v=id=>($('#'+id)?.value||'').trim(),sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const out=(id,t)=>{const p=$('#o'+id);if(p)p.textContent=typeof t=='string'?t:JSON.stringify(t,null,1)};
+const add=(id,t)=>{const p=$('#o'+id);if(p)p.textContent=(typeof t=='string'?t:JSON.stringify(t,null,1))+'\n'+p.textContent};
+const fmtB=b=>b>1e6?(b/1e6).toFixed(1)+' MB':b>1e3?(b/1e3).toFixed(0)+' KB':b+' B';
+const hora=t=>new Date(t*1000).toLocaleTimeString();
+const dataH=t=>t?new Date(t*1000).toLocaleString():'-';
+const qsRede=()=>REDE_SEL?'rede='+encodeURIComponent(REDE_SEL):'';
+let INFO={},REDES={atual:null,redes:[]},REDE_SEL=null;
+// stream de /api/run (POST), tratando content-type nulo e status de erro (401 etc.)
+async function stream(id,tool,arg){const p=$('#o'+id);if(!p)return;if(!SERVIDOR){p.textContent=SEM_SRV;return}p.textContent='…';
+  let r;try{r=await fetch('/api/run',{method:'POST',headers:{...H,'Content-Type':'application/json'},body:JSON.stringify({t:tool,a:arg})});}catch(e){p.textContent='falha de conexão: '+e.message;return}
+  const ct=r.headers.get('content-type')||'';
+  if(!r.ok){let msg='erro HTTP '+r.status;try{if(ct.includes('json'))msg=(await r.json()).erro||msg;}catch{}p.textContent=msg;return}
+  if(ct.includes('json')){p.textContent=(await r.json()).erro||'';return}
+  p.textContent='';const rd=r.body.getReader(),dc=new TextDecoder();for(;;){const{done,value}=await rd.read();if(done)break;p.textContent+=dc.decode(value,{stream:true});p.scrollTop=1e9}}
+const inp=(id,ph,val='')=>`<input id="${id}" placeholder="${esc(ph)}" value="${esc(val)}">`;
+const card=(id,t,d,body)=>`<div class="c"><h2>${t}</h2><p>${d}</p>${body}<pre id="o${id}"></pre></div>`;
+// Botões sem handler inline: data-f é o nome da ação em ACOES e data-a seus argumentos (JSON).
+const btn=(t,f,cls='',...args)=>`<button class="${cls}" data-f="${f}" data-a="${esc(JSON.stringify(args))}">${t}</button>`;
+const redeSel=()=>`<select class="redeSel" data-chg="redeEscolher"></select>`;
+function chart(id,arr,max){const c=$('#'+id);if(!c)return;const g=c.getContext('2d');c.width=c.clientWidth;c.height=90;g.clearRect(0,0,c.width,90);g.strokeStyle='#5dff8f';g.lineWidth=1.5;g.beginPath();const m=max||Math.max(...arr,1);arr.forEach((y,i)=>{const X=i*c.width/Math.max(arr.length-1,1),Y=88-y/m*84;i?g.lineTo(X,Y):g.moveTo(X,Y)});g.stroke()}
+function bars(el,arr,f=x=>x){const m=Math.max(...arr.map(x=>x[1]),1);const e=typeof el=='string'?$(el):el;if(e)e.innerHTML=arr.length?arr.map(([k,n])=>`<div style="font-size:11px">${esc(k)} <span style="color:#7a9c85">${esc(f(n))}</span></div><div class="bar" style="width:${Math.max(n/m*100,2)}%"></div>`).join(''):'<p>Sem dados ainda.</p>'}
+
+// Abre o app Termux (intent do Android). Mesmo texto de INTENT_TERMUX no server.py.
+const INTENT_TERMUX="intent:#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.termux;component=com.termux/.app.TermuxActivity;end";
+const AVISO_NAV=SERVIDOR?'':`<div class="aviso"><b>Modo navegador:</b> esta página foi aberta sem o servidor do Kit. Aqui já funcionam os testes de hardware, sensores, câmera, GPS, NFC, Bluetooth, velocidade e sub-rede. Rede, captura e inventário precisam do servidor.<br><br><b>Para ter tudo:</b> 1) abra o Termux; 2) digite <b>kit</b> e toque em Enter. O Kit liga e abre sozinho, já completo. Com o modo automático (já vem ligado pelo instalador), só abrir o Termux basta.<br><a class="bt" href="${INTENT_TERMUX}">▶ Abrir o Termux</a> <a class="bt" href="http://127.0.0.1:8080/abrir">Já liguei: abrir o Kit completo</a><div id="sonda"></div></div>`;
+// No modo navegador, procura o servidor em 127.0.0.1:8080 e avisa quando ele aparece.
+function sondar(){if(SERVIDOR)return;fetch('http://127.0.0.1:8080/manifest.webmanifest',{mode:'no-cors',cache:'no-store'}).then(()=>{const e=$('#sonda');if(e)e.innerHTML='<p style="color:#5dff8f;margin:6px 0 0">✔ O servidor do Kit está ligado. Toque em <b>Já liguei: abrir o Kit completo</b>.</p>';$('#st').textContent='servidor encontrado'}).catch(()=>setTimeout(sondar,4000))}
+function offline(sim){const e=$('#off');if(e)e.hidden=!sim;if(sim)$('#st').textContent='servidor offline'}
+const ABAS={
+Painel:()=>`${AVISO_NAV}
+<div class="c"><h2><span class="led"></span>Painel geral</h2><p>Visão consolidada da rede e da captura. Atualiza sozinho. Opera só sobre a <b>sua</b> rede e os <b>seus</b> aparelhos.</p><div class="g3" id="kpi"></div></div>
+<div class="c"><h2>Tráfego ao vivo</h2><canvas id="trf"></canvas><p id="trfL" style="margin:4px 0 0"></p></div>
+<div class="g"><div class="c"><h2>Protocolos</h2><div id="pPrt"></div></div><div class="c"><h2>Top domínios</h2><div id="pDom"></div></div></div>
+<div class="c"><h2>⚠ Tráfego inseguro</h2><p>Conexões sem criptografia (Telnet, FTP, HTTP, POP3).</p><div id="pIns"></div></div>
+<div class="c"><h2>Últimos alertas desta rede</h2><div id="pAl"></div></div>
+<div class="c"><h2>Atalhos</h2>${btn('🔍 Varrer rede','ir','','Segurança','invScan')}${btn('🛡 Detecções','ir','','Segurança','detLoad')}${btn('📄 Relatório','ir','','Relatório','relatorio')}${btn('⬇ JSON','baixarJSON')}${btn('⬇ .pcap','baixarPcap')}</div>`,
+Captura:()=>`${AVISO_NAV}
+<div class="c"><h2>Captura de pacotes (estilo Wireshark)</h2>
+<p>1) Instale <b>PCAPdroid</b>. 2) Ajustes → Modo de despejo: <b>Exportador UDP</b>, IP <b>127.0.0.1</b>, porta <b>5123</b>, formato <b>PCAP</b>. 3) Iniciar no PCAPdroid. Captura o tráfego <u>deste celular</u>, por app, sem root. Deauth, ARP e DHCP de outros aparelhos só aparecem em .pcap importado.</p>
+${btn('▶ Ao vivo','capLive','',1)}${btn('⏸ Pausar','capLive','',0)}${btn('⬇ .pcap (Wireshark)','baixarPcap')}${btn('Limpar','capLimpar','r')}</div>
+<div class="c"><h2>📂 Analisar arquivo .pcap / .pcapng</h2><p>Analisa uma captura feita na <b>sua</b> rede (Wireshark, tcpdump no roteador, adaptador em modo monitor). Detecta deauth, ARP spoofing, DHCP falso e tráfego inseguro. Cada arquivo é analisado separadamente. Máx. 25 MB.</p><input type="file" id="pcF" accept=".pcap,.pcapng,.cap"><label style="font-size:11px"><input type="checkbox" id="pcL" style="width:auto"> limpar a captura atual antes</label><br>${btn('Analisar','pcapImport')}<pre id="opc"></pre></div>
+<div class="c"><h2>Filtro</h2>${inp('flt','ex.: dns, 443, 192.168.0.1, tls, inseguro')}
+<div class="tw"><table><thead><tr><th>#</th><th>Origem → Destino</th><th>Prot.</th><th>Info</th></tr></thead><tbody id="tb"></tbody></table></div></div>`,
+Rede:()=>`${AVISO_NAV}
+${card('alvo','Alvo','IP, faixa (192.168.0.0/24) ou domínio para as ferramentas abaixo.',inp('alvo','alvo',INFO.gateway&&INFO.gateway.includes('.')?INFO.gateway.replace(/\.\d+$/,'.0/24'):''))}
+${card('nm','Nmap','Hosts, portas, versões e scripts. Varredura ativa só na sua rede (faixa privada).',btn('Hosts','run','','nm','nmap_hosts','alvo')+btn('Portas','run','','nm','nmap_rapido','alvo')+btn('Versões','run','','nm','nmap_servicos','alvo')+btn('Todas','run','','nm','nmap_todas','alvo')+btn('Scripts','run','','nm','nmap_scripts','alvo')+btn('Vulns','run','y','nm','nmap_vuln','alvo'))}
+${card('dg','Caminho','Ping, traceroute (UDP, sem root) e MTR (o MTR pode exigir root).',inp('dgA','host','8.8.8.8')+btn('Ping','run','','dg','ping','dgA')+btn('Traceroute','run','','dg','traceroute','dgA')+btn('MTR','run','','dg','mtr','dgA'))}
+${card('dn','DNS / WHOIS / SSL','Registros, dono, cabeçalhos e certificado.',inp('dnA','domínio','mercadolivre.com.br')+btn('DNS','run','','dn','dig','dnA')+btn('WHOIS','run','','dn','whois','dnA')+btn('Cabeçalhos','run','','dn','headers','dnA','https://')+btn('SSL','cert'))}
+${card('ds','Descoberta','UPnP/SSDP e mDNS: TVs, roteadores, impressoras, IoT.',btn('UPnP','descobrir','','ssdp',4)+btn('mDNS','descobrir','','mdns',3))}
+${card('pp','Portas (Python)','Teste rápido sem nmap (só faixa privada).',inp('ppA','host','')+btn('Testar','portas'))}
+${card('ex','Extras','MAC→fabricante, Wake-on-LAN, sub-rede.',inp('exA','MAC ou IP/CIDR','')+btn('Fabricante','oui')+btn('Wake-on-LAN','wol')+btn('Sub-rede','subnet'))}`,
+Segurança:()=>`${AVISO_NAV}
+<div class="c"><h2><span class="led"></span>Inventário da rede</h2><p>Varre a faixa da <b>rede atual</b>, registra cada dispositivo e avisa quando aparece um <b>novo</b> aparelho não autorizado. Cada rede (casa, cliente) tem seu próprio inventário.</p>
+${inp('invA','faixa',INFO.ip_local&&INFO.ip_local.includes('.')?INFO.ip_local:'')}${btn('🔍 Varrer agora','invScan')}${btn('Auto 5min (página aberta)','invAuto')}
+<p style="margin-top:6px">Ver inventário da rede:</p>${redeSel()}${btn('Ver','invVer')}${btn('✏ Renomear rede','redeRenomear')}<div id="invT"></div></div>
+<div class="c"><h2>🛡 Detecções da captura</h2><p>Analisa os pacotes ao vivo e os .pcap importados: rajada de <b>deauth/disassoc</b> (Wi-Fi), <b>ARP spoofing</b>, <b>DHCP falso</b> e tráfego inseguro. Só detecta; não ataca.</p>${btn('Atualizar','detLoad')}<div id="detT"></div></div>
+<div class="c"><h2>📈 Histórico: hoje × ontem</h2><p>Compara a última varredura com a de ~24h atrás da mesma faixa, só dentro da rede escolhida acima.</p>${btn('Comparar 24h','histLoad','',24)}${btn('7 dias','histLoad','',168)}<div id="hisT"></div></div>
+<div class="c"><h2>⏰ Varredura agendada</h2><p>O servidor varre sozinho (mesmo com a página fechada) e grava alertas. A agenda fica <b>presa à rede em que foi salva</b>: em outra rede (café, cliente) ela pausa e não varre nada. 0 = desligado; 5 a 1440 min.</p><div class="g"><div>${inp('agM','minutos (ex.: 30)')}</div><div>${inp('agF','faixa (vazio = automática)')}</div></div>${btn('Salvar nesta rede','agSalvar')}${btn('Status','agLoad')}<pre id="oag"></pre></div>
+<div class="c"><h2>Vigilância de ARP (anti-spoofing)</h2><p>Detecta se alguém se passa pelo roteador. Sem root o Android limita a tabela ARP.</p>${btn('Verificar','arpWatch')}<pre id="oarp"></pre></div>
+<div class="c"><h2>Roteador</h2><p>Auditoria do gateway e checklist de segurança.</p>${inp('rtA','gateway',INFO.gateway&&INFO.gateway.includes('.')?INFO.gateway:'')}${btn('Auditar','rtAuditar')}${btn('Abrir painel','rtPainel')}<div id="dicas" style="font-size:11px;margin-top:6px"></div><pre id="ort"></pre></div>
+<div class="c"><h2>🔔 Central de alertas</h2><p>Alertas da rede atual e da captura.</p>${btn('Atualizar','loadAlertas')}${btn('Todas as redes','loadAlertas','','todas')}${btn('Limpar','alertasLimpar','r')}<div id="alertas"></div></div>`,
+WiFi:()=>`${AVISO_NAV}
+${card('wc','Conexão atual','SSID, sinal, velocidade. Requer Termux:API.',btn('Ler','wifiInfo'))}
+<div class="c"><h2>Redes próximas</h2><p>Canais, sinal e segurança: ache o canal menos congestionado.</p>${btn('Escanear','wifiScan')}<div id="wsT"></div></div>
+${card('wm','Monitor de sinal','RSSI por 60s: ache pontos fracos.',btn('Iniciar','wifiMon')+'<canvas id="wmC"></canvas>')}
+${card('ce','Sinal celular','Torres e 4G/5G. Requer Termux:API.',btn('Ler','json','','ce','/api/celular'))}
+${card('sp','Velocidade','Download e latência (Cloudflare).',btn('Medir','speed')+'<canvas id="spC"></canvas>')}`,
+Aparelho:()=>`
+${card('app','📲 App','Instale o Kit na tela inicial: abre em tela cheia, como um app. Precisa estar aberto em http://127.0.0.1 (atalho kit).',btn('Instalar app','instalar'))}
+${card('in','Sistema',' ',btn('Ler','devInfo'))}
+${card('bat','🔋 Bateria','Carga, temperatura e saúde (Termux:API).',btn('Ler','json','','bat','/api/bateria'))}
+${card('nfc','NFC','Lê serial e conteúdo; grava texto/URL. Use só nas suas próprias tags.',btn('Ler','nfcRead')+btn('Gravar','nfcWrite'))}
+${card('bt','Bluetooth LE','Inventário e bateria dos seus próprios aparelhos.',btn('Escanear','btScan'))}
+${card('qr','QR / código de barras',' ',btn('Ler','qr')+'<video id="qrV" playsinline style="width:100%;display:none"></video>')}
+${card('gps','GPS',' ',btn('Localizar','gps'))}
+${card('iss','🛰 Satélites / ISS','Posição da Estação Espacial e distância de você.',btn('Rastrear','iss'))}
+${card('sen','Sensores','Acelerômetro, giroscópio, bússola.',btn('Iniciar','sensors'))}
+${card('cpu','Estresse de CPU','Detecta queda por aquecimento.',btn('10s','cpu'))}`,
+Testes:()=>`
+${card('tl','Tela','Pixel morto. Toque para trocar a cor.',btn('Iniciar','tela'))}
+${card('tc','Touch','Pinte tudo; sobras = zona morta.',btn('Iniciar','touch'))}
+${card('sm','Alto-falante',' ',btn('Varredura','sweep')+btn('Esq.','tone','',1000,-1)+btn('Dir.','tone','',1000,1))}
+${card('mc','Microfone',' ',btn('15s','mic')+'<canvas id="mcC"></canvas>')}
+${card('cm','Câmeras / lanterna',' ',btn('Listar','media')+btn('Lanterna','torch'))}
+${card('mo','📡 Sinalização Morse','Pisca a lanterna (ou a tela, se a lanterna não estiver acessível) em código Morse.',inp('moT','texto','SOS')+btn('Transmitir','morse')+btn('Parar','moParar','r'))}
+${card('vb','Vibração',' ',btn('Testar','vibrar'))}`,
+Relatório:()=>`${AVISO_NAV}
+<div class="c"><h2>Relatório técnico</h2><p>Consolida a rede escolhida: inventário, alertas, histórico, detecções e captura. PDF pela impressão; JSON e .pcap completos para arquivar ou abrir no Wireshark.</p>
+${redeSel()}${btn('✏ Renomear rede','redeRenomear')}<br>
+${btn('📄 Gerar','relatorio')}${btn('🖨 Imprimir / PDF','imprimir')}${btn('⬇ JSON','baixarJSON')}${btn('⬇ .pcap','baixarPcap')}</div>
+<div id="rel" class="c" style="background:#fff;color:#111"></div>`};
+let aba='Painel';
+function draw(){$('#nav').innerHTML=Object.keys(ABAS).map(k=>btn(esc(k),'aba',k==aba?'on':'',k)).join('');$('#main').innerHTML=ABAS[aba]();redesFill();if(aba=='Captura'){$('#flt').oninput=capDraw;capDraw()}if(aba=='Segurança'&&SERVIDOR){loadAlertas();detLoad();agLoad();invVer()}if(aba=='Painel')painel(true)}
+window.onerror=m=>{$('#st').textContent='erro: '+m};window.onunhandledrejection=e=>{$('#st').textContent='erro: '+(e.reason?.message||e.reason)};
+
+// ---------- Ações dos botões (um único ouvinte; nada de JS inline no HTML)
+const ACOES={
+  aba:k=>{aba=k;draw();scrollTo(0,0)},
+  ir:(a,f)=>{aba=a;draw();if(f)ACOES[f]()},
+  run:(id,tool,campo,pre='')=>stream(id,tool,pre+v(campo)),
+  json:(id,p)=>{out(id,'…');return apiGET(p).then(r=>out(id,r))},
+  cert:()=>{out('dn','…');return apiGET('/api/cert',v('dnA')).then(r=>out('dn',r))},
+  descobrir:(tipo,s)=>{out('ds',`Ouvindo ${s}s…`);return apiPOST('/api/'+tipo).then(r=>out('ds',r))},
+  portas:()=>{out('pp','…');return apiPOST('/api/portas',{a:v('ppA')}).then(r=>out('pp',r))},
+  oui:()=>apiGET('/api/oui',v('exA')).then(r=>out('ex',r)),
+  wol:()=>apiPOST('/api/wol',{a:v('exA')}).then(r=>out('ex',r)),
+  rtAuditar:()=>{out('rt','Analisando…');return apiPOST('/api/roteador',{a:v('rtA')}).then(r=>{out('rt',r);rtDicas(r)})},
+  rtPainel:()=>{const h=v('rtA');if(/^[\w.:\-\[\]]+$/.test(h))open('http://'+h,'_blank','noopener')},
+  capLive:x=>{LIVE=x},
+  capLimpar:()=>apiPOST('/api/cap/limpar').then(()=>{LAST=0;ROWS=[];capDraw()}),
+  alertasLimpar:()=>{if(confirm('Apagar todos os alertas de todas as redes?'))return apiPOST('/api/alertas/limpar').then(()=>loadAlertas())},
+  moParar:()=>{MO=0},vibrar:()=>navigator.vibrate?.([400,150,400]),imprimir:()=>print(),
+  instalar:async()=>{if(PROMPT){PROMPT.prompt();await PROMPT.userChoice;PROMPT=null;$('#instalar').hidden=true;return}
+    out('app',matchMedia('(display-mode: standalone)').matches?'O Kit já está aberto como app.':
+      !isSecureContext?'Instalação só funciona aberta em http://127.0.0.1 (use o atalho kit no próprio celular). Pelo IP da rede (--lan) o navegador não permite.':
+      /iPhone|iPad/.test(navigator.userAgent)?'No Safari: Compartilhar → Adicionar à Tela de Início.':
+      'Use o menu do navegador (⋮) → "Instalar app" ou "Adicionar à tela inicial".')},
+  invScan,invAuto,invVer,detLoad,histLoad,agSalvar,agLoad,arpWatch,loadAlertas,relatorio,baixarJSON,baixarPcap,pcapImport,subnet,
+  redeEscolher,redeRenomear,wifiInfo,wifiScan,wifiMon,speed,devInfo,nfcRead,nfcWrite,btScan,qr,gps,iss,sensors,cpu,tela,touch,sweep,tone,mic,media,torch,morse
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;const f=ACOES[b.dataset.f];if(!f)return;let a=[];try{a=JSON.parse(b.dataset.a||'[]')}catch{}
+  try{const r=f(...a);if(r&&r.catch)r.catch(err=>{$('#st').textContent='erro: '+(err.message||err)})}catch(err){$('#st').textContent='erro: '+(err.message||err)}});
+document.addEventListener('change',e=>{const s=e.target.closest('[data-chg]');if(s&&ACOES[s.dataset.chg])ACOES[s.dataset.chg](s.value)});
+
+// ---------- App instalável
+let PROMPT=null;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();PROMPT=e;$('#instalar').hidden=false});
+addEventListener('appinstalled',()=>{PROMPT=null;$('#instalar').hidden=true});
+if('serviceWorker' in navigator&&isSecureContext&&location.protocol.startsWith('http'))navigator.serviceWorker.register('/sw.js').catch(()=>{});
+
+// ---------- Redes
+async function redesLoad(){const r=await apiGET('/api/redes');if(r.erro||!Array.isArray(r.redes))return;REDES=r;if(!REDE_SEL||!r.redes.some(x=>x.rede_id==REDE_SEL))REDE_SEL=r.atual||(r.redes[0]||{}).rede_id||null;redesFill();redeTopo()}
+function redesFill(){document.querySelectorAll('select.redeSel').forEach(s=>{s.innerHTML=REDES.redes.length?REDES.redes.map(x=>`<option value="${esc(x.rede_id)}"${x.rede_id==REDE_SEL?' selected':''}>${esc(x.nome)}${x.atual?' (atual)':''} · ${esc(x.dispositivos)} disp.</option>`).join(''):'<option value="">nenhuma rede registrada ainda</option>'})}
+function redeTopo(){const a=REDES.redes.find(x=>x.atual);$('#redeAt').textContent=SERVIDOR?(a?'📶 rede atual: '+a.nome+(a.ssid?'':' · gw '+a.gateway):'📶 rede atual: não identificada (sem Wi-Fi/gateway)'):'modo navegador (sem servidor)'}
+function redeEscolher(id){REDE_SEL=id||null;redesFill();if(aba=='Segurança'){invVer();$('#hisT')&&($('#hisT').innerHTML='')}if(aba=='Relatório')relatorio()}
+async function redeRenomear(){const x=REDES.redes.find(r=>r.rede_id==REDE_SEL);if(!x)return;const n=prompt('Nome para esta rede (ex.: Casa, Cliente João):',x.nome);if(!n)return;const r=await apiPOST('/api/rede/renomear',{rede:REDE_SEL,nome:n});if(r.erro){$('#st').textContent=r.erro;return}await redesLoad();if(aba=='Relatório'&&$('#rel').innerHTML)relatorio()}
+
+// ---------- Captura + Painel
+let LAST=0,ROWS=[],LIVE=1,STATS={},TRF=[],AL_TS=0;
+async function capTick(){if(LIVE&&SERVIDOR){try{const n=await apiGET('/api/cap/pacotes?desde='+LAST);if(Array.isArray(n)&&n.length){LAST=n[n.length-1].n;ROWS=ROWS.concat(n).slice(-3000)}const pv=STATS.bytes||0;STATS=await apiGET('/api/cap/stats');TRF.push(Math.max((STATS.bytes-pv)/1500,0));if(TRF.length>60)TRF.shift();$('#st').innerHTML='<span class="led"></span>'+esc(STATS.pacotes)+' pacotes';if(aba=='Captura')capDraw();if(aba=='Painel')painel();offline(false)}catch{offline(true)}}setTimeout(capTick,1500)}
+async function baixar(url,nome){if(!SERVIDOR){$('#st').textContent=SEM_SRV;return}const r=await fetch(url,{headers:H});if(!r.ok){$('#st').textContent='erro ao baixar ('+r.status+')';return}const b=await r.blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=nome;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000)}
+const stamp=()=>new Date().toISOString().slice(0,19).replace(/[-:T]/g,'');
+function baixarPcap(){return baixar('/api/cap/pcap','captura-'+stamp()+'.pcap')}
+function baixarJSON(){return baixar('/api/relatorio?baixar=1&'+qsRede(),'relatorio-kit-'+stamp()+'.json')}
+async function pcapImport(){if(!SERVIDOR)return out('pc',SEM_SRV);const f=$('#pcF').files[0];if(!f)return out('pc','Escolha um arquivo .pcap ou .pcapng');if(f.size>25*1024*1024)return out('pc','Arquivo maior que 25 MB');out('pc','Analisando '+f.name+'…');const r=await fetch('/api/cap/importar'+($('#pcL').checked?'?limpar=1':''),{method:'POST',headers:{...H,'Content-Type':'application/octet-stream'},body:f});const j=await r.json();if(j.erro)return out('pc',j.erro);LAST=0;ROWS=[];out('pc',`${j.decodificados} de ${j.lidos} pacotes decodificados (${j.ignorados} ignorados) · ${j.contexto}.\n`+(j.deteccoes.length?j.deteccoes.map(e=>'⚠ '+e.msg).join('\n'):'Nenhuma detecção de ataque.'))}
+function capDraw(){if(!$('#tb'))return;const f=v('flt').toLowerCase();const R=(f?ROWS.filter(r=>JSON.stringify(r).toLowerCase().includes(f)):ROWS).slice(-250).reverse();
+$('#tb').innerHTML=R.map(r=>`<tr class="${esc((r.app||'').split(' ')[0])} ${r.info&&r.info.startsWith('TLS')?'TLS':''}"><td>${esc(r.n)}${r.inseguro?' ⚠':''}</td><td>${esc(r.src)}${r.sp?':'+esc(r.sp):''}<br>→ ${esc(r.dst)}${r.dp?':'+esc(r.dp):''}</td><td>${esc(r.app||r.proto)}<br>${esc(r.len)}B</td><td>${esc(r.info||'')}${r.inseguro?'<br><span style="color:#f88">'+esc(r.inseguro)+'</span>':''}</td></tr>`).join('')}
+function painel(forcar){const s=STATS;if(!$('#kpi'))return;$('#kpi').innerHTML=`<div class="k"><b>${esc(s.pacotes||0)}</b><span>PACOTES</span></div><div class="k"><b>${fmtB(s.bytes||0)}</b><span>TRÁFEGO</span></div><div class="k"><b>${(s.dominios||[]).length}</b><span>DOMÍNIOS</span></div><div class="k"><b>${(s.protocolos||[]).length}</b><span>PROTOC.</span></div><div class="k"><b>${(s.inseguro||[]).reduce((a,b)=>a+b[1],0)}</b><span>INSEGUROS</span></div><div class="k"><b style="font-size:12px">${esc(INFO.gateway||'-')}</b><span>GATEWAY</span></div>`;
+chart('trf',TRF);$('#trfL').textContent=s.duracao_s?`Média ${fmtB((s.bytes||0)/s.duracao_s)}/s em ${s.duracao_s}s`:'Aguardando captura (PCAPdroid)';
+bars('#pPrt',s.protocolos||[],n=>n+' pacotes');bars('#pDom',s.dominios||[],n=>n+'×');bars('#pIns',s.inseguro||[],n=>n+' pacotes');
+// alertas no painel: no máximo a cada 10 s (o painel redesenha a cada 1,5 s)
+if(!SERVIDOR){$('#pAl').innerHTML='<p>'+esc(SEM_SRV)+'</p>';return}
+if(forcar||Date.now()-AL_TS>10000){AL_TS=Date.now();apiGET('/api/alertas').then(a=>{const el=$('#pAl');if(el)el.innerHTML=(Array.isArray(a)?a:[]).slice(0,5).map(x=>`<div class="al ${esc(x.nivel)}">${esc(hora(x.ts))} · ${esc(x.msg)}</div>`).join('')||'<p>Nenhum alerta.</p>'})}}
+
+// ---------- Segurança
+function invRender(lista,novos,cab){const el=$('#invT');if(!el)return;novos=novos||[];
+el.innerHTML=`<p>${cab}</p><div class="tw"><table><tr><th>IP</th><th>Fabricante</th><th>MAC</th><th>Visto</th><th></th></tr>${lista.map(d=>`<tr><td>${esc(d.ip)}${novos.find(n=>n.ip==d.ip)?' <span style="color:#fb3">NOVO</span>':''}</td><td>${esc(d.nome||d.fabricante||'?')}</td><td style="font-size:9px">${esc(d.mac||'-')}</td><td>${esc(new Date(d.ultimo*1000).toLocaleString().slice(0,-3))}</td><td>${d.autorizado?'✅':btn('OK','autorizar','',d.ip,d.mac||'',d.rede_id)}</td></tr>`).join('')}</table></div>`}
+ACOES.autorizar=(ip,mac,rede)=>{const n=prompt('Nome do dispositivo '+ip+':','');if(n===null)return;return apiPOST('/api/dispositivo/autorizar',{a:ip,mac,rede,nome:n}).then(r=>{if(r.erro)$('#st').textContent=r.erro;invVer()})};
+async function invScan(){const el=$('#invT');if(!el)return;el.innerHTML='<p>Varrendo a faixa (ping + portas comuns)…</p>';const r=await apiPOST('/api/inventario',{a:v('invA')});
+if(r.erro){el.innerHTML='<p style="color:#f88">'+esc(r.erro)+'</p>';return}
+REDE_SEL=r.rede_id;await redesLoad();invRender(r.inventario,r.novos,`${esc(r.rede_nome)} · ${esc(r.faixa)}: ${r.ativos.length} ativos · <b style="color:#fb3">${r.novos.length} novos</b>`+(r.macs_trocados.length?` · <b style="color:#f44">${r.macs_trocados.length} MAC trocado</b>`:''));loadAlertas()}
+async function invVer(){if(!REDE_SEL){const el=$('#invT');if(el)el.innerHTML='<p>Nenhuma rede registrada ainda. Faça a primeira varredura.</p>';return}const r=await apiGET('/api/dispositivos?'+qsRede());if(r.erro){$('#invT')&&($('#invT').textContent=r.erro);return}invRender(r.inventario,[],`${esc(r.rede_nome)}: ${r.inventario.length} dispositivos registrados`)}
+let invT;function invAuto(){if(invT){clearInterval(invT);invT=null;$('#st').textContent='auto-varredura desligada';return}invScan();invT=setInterval(invScan,300000);$('#st').textContent='auto-varredura a cada 5 min'}
+async function arpWatch(){out('arp','Verificando…');const r=await apiPOST('/api/arpwatch');out('arp',r.erro||((r.alertas.length?'⚠ '+r.alertas.join('\n⚠ '):'Nenhuma anomalia.')+'\n\nTabela:\n'+r.tabela.map(x=>x[0]+' = '+x[1]).join('\n')))}
+function rtDicas(r){if(r.erro){$('#dicas').textContent=r.erro;return}const p=(r.portas_abertas||[]).map(x=>x.porta),d=[],ck=(b,t)=>d.push((b?'⚠️':'✅')+' '+t);ck(p.includes(23),'Telnet (23) '+(p.includes(23)?'ABERTO — desative':'fechado'));ck(p.includes(21),'FTP (21) '+(p.includes(21)?'aberto':'fechado'));ck(p.includes(7547),'TR-069 (7547) '+(p.includes(7547)?'aberto (gerência da operadora)':'fechado'));ck(p.includes(1900),'UPnP '+(p.includes(1900)?'ativo':'ok'));ck(r.pagina&&typeof r.pagina.https=='string','Painel HTTPS '+(r.pagina&&typeof r.pagina.https!='string'?'disponível':'indisponível'));d.push('🔎 Confira: senha de admin trocada, WPS off, WPA2/WPA3, firmware atual, rede de convidados p/ IoT.');$('#dicas').innerHTML=d.map(esc).join('<br>')}
+async function loadAlertas(qual){const el=$('#alertas');if(!el)return;const a=await apiGET('/api/alertas'+(qual=='todas'?'?rede=todas':''));el.innerHTML=(qual=='todas'?'<p>Mostrando todas as redes.</p>':'')+((Array.isArray(a)?a:[]).map(x=>`<div class="al ${esc(x.nivel)}">${esc(hora(x.ts))} · <b>${esc(x.tipo)}</b> · ${esc(x.msg)} ${btn('❔','explicar','',x.tipo)}</div>`).join('')||'<p>'+esc(a.erro||'Nenhum alerta registrado.')+'</p>')}
+async function detLoad(){const el=$('#detT');if(!el)return;const r=await apiGET('/api/deteccoes');if(r.erro){el.textContent=r.erro;return}const ctx=Object.entries(r.contextos||{});el.innerHTML=`<p>Deauth vistos: <b>${esc(r.deauth_total)}</b></p>`+(ctx.map(([k,c])=>`<p>${esc(k)}: DHCP <b style="color:${c.servidores_dhcp.length>1?'#f44':'#5dff8f'}">${esc(c.servidores_dhcp.join(', ')||'nenhum')}</b> · ${esc(Object.keys(c.arp).length)} IPs no ARP</p>`).join('')||'<p>Nenhum pacote analisado ainda.</p>')+((r.eventos||[]).map(e=>`<div class="al ${esc(e.nivel)}">${esc(hora(e.ts))} · <b>${esc(e.tipo)}</b> · ${esc(e.origem||'')} · ${esc(e.msg)}</div>`).join('')||'<p>Nenhum ataque detectado.</p>')}
+async function histLoad(h){const el=$('#hisT');if(!el)return;el.innerHTML='<p>Comparando…</p>';const r=await apiGET('/api/historico?horas='+h+'&'+qsRede());if(r.erro){el.textContent=r.erro;return}const c=r.comparacao;el.innerHTML=`<p>Rede: <b>${esc(r.rede_nome)}</b></p>`+(c.erro?`<p>${esc(c.erro)}</p>`:`<p>${esc(c.atual.alvo)}: ${esc(dataH(c.referencia.ts))} → ${esc(dataH(c.atual.ts))} (${esc(c.horas_entre)}h)</p><p style="color:#fb3">Novos: ${esc(c.novos.join(', ')||'nenhum')}</p><p style="color:#f88">Sumiram: ${esc(c.sumiram.join(', ')||'nenhum')}</p><p>Mantidos: ${esc(c.mantidos)}</p>`)+`<div class="tw"><table><tr><th>Quando</th><th>Faixa</th><th>Hosts</th></tr>${(r.varreduras||[]).map(x=>`<tr><td>${esc(dataH(x.ts))}</td><td>${esc(x.alvo)}</td><td>${esc(x.hosts)}</td></tr>`).join('')}</table></div>`}
+const agTxt=r=>r.erro?r.erro:(r.minutos?`Ligado: a cada ${r.minutos} min em ${r.faixa||'faixa automática'}\nPresa à rede: ${r.rede_nome||'?'}`:'Desligado')+(r.pausada?`\n⏸ ${r.pausada}`:'')+(r.ultima?`\nÚltima: ${dataH(r.ultima)}`:'')+(r.proxima?`\nPróxima: ${dataH(r.proxima)}`:'')+(r.ultimo_erro?`\nÚltimo erro: ${r.ultimo_erro}`:'')+`\nExecuções nesta sessão: ${r.execucoes||0}`;
+async function agLoad(){const r=await apiGET('/api/agenda');out('ag',agTxt(r));if($('#agM')&&!v('agM'))$('#agM').value=r.minutos||'';if($('#agF')&&!v('agF'))$('#agF').value=r.faixa||''}
+async function agSalvar(){const r=await apiPOST('/api/agenda/salvar',{minutos:+v('agM')||0,faixa:v('agF')});if(r.erro)return out('ag',r.erro);agLoad()}
+function subnet(){const[ip,c]=v('exA').split('/');const o=(ip||'').split('.').map(Number);if(c===undefined||o.length!=4||o.some(x=>!(x>=0&&x<=255))||!(+c>=0&&+c<=32))return out('ex','Formato IP/CIDR, ex.: 192.168.0.10/24');const n=o.reduce((a,x)=>a*256+x,0),cidr=+c,m=cidr?(0xFFFFFFFF<<(32-cidr))>>>0:0,net=(n&m)>>>0,bc=(net|~m)>>>0,s=x=>[24,16,8,0].map(k=>x>>>k&255).join('.');out('ex',{rede:s(net)+'/'+cidr,mascara:s(m),broadcast:s(bc),primeiro:cidr>=31?s(net):s(net+1),ultimo:cidr>=31?s(bc):s(bc-1),hosts:cidr==32?1:cidr==31?2:2**(32-cidr)-2})}
+
+// ---------- Wi-Fi
+async function wifiInfo(){const r=await apiGET('/api/info');if(r.erro)return out('wc',r.erro);const w=r.wifi;out('wc',w?{rede:w.ssid,bssid:w.bssid,sinal_dBm:w.rssi,qualidade:w.rssi>-60?'ótimo':w.rssi>-70?'bom':w.rssi>-80?'fraco':'ruim',link_Mbps:w.link_speed_mbps,freq_MHz:w.frequency_mhz,ip:w.ip}:'Instale Termux:API (mesma loja do Termux): pkg install termux-api')}
+const canal=f=>f<3000?Math.round((f-2407)/5):Math.round((f-5000)/5);
+async function wifiScan(){$('#wsT').innerHTML='Escaneando…';const r=await apiGET('/api/wifiscan');if(!Array.isArray(r)){$('#wsT').textContent=r.erro||'indisponível';return}r.sort((a,b)=>b.rssi-a.rssi);const ch={};r.forEach(x=>{const c=canal(x.frequency_mhz);ch[c]=(ch[c]||0)+1});$('#wsT').innerHTML=`<div class="tw"><table><tr><th>Rede</th><th>dBm</th><th>Canal</th><th>Seg.</th></tr>${r.map(x=>`<tr><td>${esc(x.ssid||'(oculta)')}<br><span style="color:#7a9c85">${esc(x.bssid)}</span></td><td>${esc(x.rssi)}</td><td>${esc(canal(x.frequency_mhz))} ${x.frequency_mhz>4000?'5G':'2.4G'}</td><td>${esc((x.capabilities||'').replace(/[\[\]]/g,' ').slice(0,30))}</td></tr>`).join('')}</table></div><p>Por canal: ${Object.entries(ch).sort((a,b)=>a[0]-b[0]).map(([c,n])=>`<b>${esc(c)}</b>:${esc(n)}`).join(' · ')} — em 2.4G prefira 1, 6 ou 11.</p>`}
+let WM=0;async function wifiMon(){if(WM)return;WM=1;try{const h=[];for(let i=0;i<30;i++){const r=await apiGET('/api/info');if(r.erro)return out('wm',r.erro);const w=r.wifi;if(!w)return out('wm','Requer Termux:API');h.push(w.rssi+100);chart('wmC',h,70);out('wm',`${w.rssi} dBm (mín ${Math.min(...h)-100}, máx ${Math.max(...h)-100})`);await sleep(2000)}}finally{WM=0}}
+async function speed(){out('sp','Medindo…');try{const lat=[];for(let i=0;i<5;i++){const t=performance.now();await fetch('https://speed.cloudflare.com/__down?bytes=0',{cache:'no-store'});lat.push(performance.now()-t)}const pts=[];for(const b of[1e5,1e6,1e7,2.5e7]){const t=performance.now();await(await fetch('https://speed.cloudflare.com/__down?bytes='+b,{cache:'no-store'})).arrayBuffer();pts.push(b*8/((performance.now()-t)/1e3)/1e6);chart('spC',pts)}out('sp',{latencia_ms:Math.round(Math.min(...lat)),download_Mbps:+Math.max(...pts).toFixed(1)})}catch(e){out('sp','Sem acesso à internet: '+e.message)}}
+
+// ---------- Aparelho
+async function devInfo(){const n=navigator;out('in',{servidor:SERVIDOR?await apiGET('/api/info'):SEM_SRV,navegador:{nucleos:n.hardwareConcurrency,ramGB:n.deviceMemory?n.deviceMemory+'+':'?',tela:`${screen.width}x${screen.height} @${devicePixelRatio}x`,nfc:'NDEFReader' in window,bluetooth:'bluetooth' in n,app_instalado:matchMedia('(display-mode: standalone)').matches}})}
+const precisa=(ok,msg)=>{if(!ok)throw new Error(msg)};
+async function nfcRead(){precisa('NDEFReader' in window,'NFC indisponível neste navegador (use o Chrome no Android)');const r=new NDEFReader();await r.scan();out('nfc','Aproxime a tag…');r.onreading=e=>{add('nfc',{serial:e.serialNumber,registros:[...e.message.records].map(x=>({tipo:x.recordType,dado:x.data?new TextDecoder().decode(x.data):''}))});navigator.vibrate?.(100)};r.onreadingerror=()=>add('nfc','Tag não legível')}
+async function nfcWrite(){precisa('NDEFReader' in window,'NFC indisponível neste navegador (use o Chrome no Android)');const t=prompt('Texto ou URL:');if(!t)return;await new NDEFReader().write(/^https?:/.test(t)?{records:[{recordType:'url',data:t}]}:t);out('nfc','Gravado: '+t)}
+async function btScan(){precisa(navigator.bluetooth,'Bluetooth Web indisponível neste navegador');const d=await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:['battery_service','device_information']});add('bt',{nome:d.name,id:d.id});const s=await d.gatt.connect(),sv=await s.getPrimaryServices();add('bt','Serviços: '+sv.map(x=>x.uuid.slice(4,8)).join(', '));try{const b=await(await s.getPrimaryService('battery_service')).getCharacteristic('battery_level');add('bt','Bateria: '+(await b.readValue()).getUint8(0)+'%')}catch{}d.gatt.disconnect()}
+async function qr(){precisa('BarcodeDetector' in window,'Leitor de códigos indisponível neste navegador (use o Chrome no Android)');const vd=$('#qrV'),st=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});try{vd.srcObject=st;vd.style.display='block';await vd.play();const det=new BarcodeDetector(),fim=Date.now()+20000;out('qr','Aponte para o código (20 s)…');while(Date.now()<fim){const r=await det.detect(vd);if(r.length){out('qr',r.map(x=>x.format+': '+x.rawValue).join('\n'));navigator.vibrate?.(100);break}await sleep(200)}}finally{st.getTracks().forEach(t=>t.stop());vd.style.display='none'}}
+let POS;function gps(){out('gps','Localizando…');navigator.geolocation.getCurrentPosition(p=>{POS=p.coords;out('gps',{lat:POS.latitude.toFixed(6),lon:POS.longitude.toFixed(6),precisao_m:Math.round(POS.accuracy),vel_kmh:POS.speed!=null?(POS.speed*3.6).toFixed(1):null,mapa:`https://maps.google.com/?q=${POS.latitude},${POS.longitude}`})},e=>out('gps',e.message),{enableHighAccuracy:true,timeout:15000})}
+async function iss(){out('iss','Consultando órbita…');let r;try{r=await(await fetch('https://api.wheretheiss.at/v1/satellites/25544')).json()}catch(e){return out('iss','Sem acesso à internet: '+e.message)}let dist='';if(POS){const R=6371,dLat=(r.latitude-POS.latitude)*Math.PI/180,dLon=(r.longitude-POS.longitude)*Math.PI/180,x=Math.sin(dLat/2)**2+Math.cos(POS.latitude*Math.PI/180)*Math.cos(r.latitude*Math.PI/180)*Math.sin(dLon/2)**2;dist=Math.round(2*R*Math.asin(Math.sqrt(x)))+' km de você (no solo)'}else dist='Rode o GPS antes para calcular a distância';out('iss',{estacao:'ISS (25544)',lat:r.latitude.toFixed(3),lon:r.longitude.toFixed(3),altitude_km:Math.round(r.altitude),velocidade_kmh:Math.round(r.velocity),visivel:r.visibility,distancia:dist})}
+let SEN=0;function sensors(){if(SEN)return;SEN=1;let o='';out('sen','Mexa o aparelho…');addEventListener('deviceorientationabsolute',e=>o=`Bússola ${Math.round(e.alpha||0)}°`);addEventListener('devicemotion',e=>{const a=e.accelerationIncludingGravity||{},r=e.rotationRate||{};out('sen',`Acel X ${a.x?.toFixed(2)} Y ${a.y?.toFixed(2)} Z ${a.z?.toFixed(2)}\nGiro α ${r.alpha?.toFixed(1)} β ${r.beta?.toFixed(1)} γ ${r.gamma?.toFixed(1)}\n${o}`)})}
+let CPU=0;async function cpu(){if(CPU)return;CPU=1;try{out('cpu','Rodando…');const r=[],fim=performance.now()+1e4;while(performance.now()<fim){const t=performance.now();let x=0;for(let i=0;i<3e6;i++)x+=Math.sqrt(i);r.push(performance.now()-t);await sleep(0)}const a=r.slice(0,5).reduce((x,y)=>x+y)/5,z=r.slice(-5).reduce((x,y)=>x+y)/5;out('cpu',{rodadas:r.length,inicio_ms:a.toFixed(1),fim_ms:z.toFixed(1),veredito:z/a>1.3?'⚠ throttling':'estável'})}finally{CPU=0}}
+// ---------- Testes
+function tela(){const f=$('#full'),c=['#f00','#0f0','#00f','#fff','#000','#888'];let i=0;f.innerHTML='';f.style.display='block';f.style.background=c[0];f.onclick=()=>{if(++i>=c.length){f.style.display='none';f.onclick=null}else f.style.background=c[i]}}
+function touch(){const f=$('#full');f.style.display='block';f.style.background='#000';f.innerHTML='<canvas id="tcv" style="width:100%;height:100%"></canvas><button style="position:fixed;top:10px;right:10px" id="tx">Fechar</button>';const c=$('#tcv'),g=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;g.fillStyle='#5dff8f';c.ontouchmove=e=>{e.preventDefault();[...e.touches].forEach(t=>g.fillRect(t.clientX-15,t.clientY-15,30,30))};c.onmousemove=e=>{if(e.buttons)g.fillRect(e.clientX-15,e.clientY-15,30,30)};$('#tx').onclick=e=>{e.stopPropagation();f.style.display='none';f.innerHTML=''}}
+let ac;function tone(fq,pan){ac=ac||new AudioContext();const o=ac.createOscillator(),p=ac.createStereoPanner(),g=ac.createGain();o.frequency.value=fq;p.pan.value=pan;g.gain.value=.3;o.connect(g).connect(p).connect(ac.destination);o.start();o.stop(ac.currentTime+1)}
+function sweep(){ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain();g.gain.value=.25;o.frequency.setValueAtTime(100,ac.currentTime);o.frequency.exponentialRampToValueAtTime(1e4,ac.currentTime+6);o.connect(g).connect(ac.destination);o.start();o.stop(ac.currentTime+6);out('sm','Chiado = alto-falante danificado')}
+async function mic(){const s=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}}),x=new AudioContext(),an=x.createAnalyser();x.createMediaStreamSource(s).connect(an);const d=new Float32Array(an.fftSize),h=[],fim=Date.now()+15000;const f=()=>{an.getFloatTimeDomainData(d);const db=Math.max(0,20*Math.log10(Math.sqrt(d.reduce((a,b)=>a+b*b,0)/d.length))+94);h.push(db);if(h.length>150)h.shift();chart('mcC',h,120);out('mc',`≈ ${db.toFixed(0)} dB`);if(Date.now()<fim)requestAnimationFrame(f);else{s.getTracks().forEach(t=>t.stop());x.close()}};f()}
+async function media(){await navigator.mediaDevices.getUserMedia({audio:true,video:true}).then(s=>s.getTracks().forEach(t=>t.stop()));out('cm',(await navigator.mediaDevices.enumerateDevices()).map(x=>x.kind+': '+(x.label||'?')).join('\n'))}
+let ts;async function torch(){if(ts){ts.getTracks().forEach(t=>t.stop());ts=null;return out('cm','Desligada')}ts=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});const tr=ts.getVideoTracks()[0];if(!(tr.getCapabilities?.()||{}).torch){ts.getTracks().forEach(t=>t.stop());ts=null;return out('cm','Lanterna não acessível')}await tr.applyConstraints({advanced:[{torch:true}]});out('cm','Ligada')}
+const MORSE={a:'.-',b:'-...',c:'-.-.',d:'-..',e:'.',f:'..-.',g:'--.',h:'....',i:'..',j:'.---',k:'-.-',l:'.-..',m:'--',n:'-.',o:'---',p:'.--.',q:'--.-',r:'.-.',s:'...',t:'-',u:'..-',v:'...-',w:'.--',x:'-..-',y:'-.--',z:'--..',0:'-----',1:'.----',2:'..---',3:'...--',4:'....-',5:'.....',6:'-....',7:'--...',8:'---..',9:'----.'};
+const morseCod=t=>t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').split(' ').map(w=>[...w].map(c=>MORSE[c]||'').filter(Boolean).join(' ')).join(' / ');
+let MO=0;async function morse(){if(MO)return;const t=v('moT')||'SOS',cod=morseCod(t),U=200;if(!cod)return out('mo','Use letras e números');MO=1;let tr=null,st=null;try{st=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});tr=st.getVideoTracks()[0];if(!(tr.getCapabilities?.()||{}).torch){st.getTracks().forEach(x=>x.stop());tr=null;st=null}}catch{tr=null}const f=$('#full');f.innerHTML='';const luz=async on=>{if(tr)await tr.applyConstraints({advanced:[{torch:on}]});else{f.style.display=on||MO?'block':'none';f.style.background=on?'#fff':'#000'}};out('mo',(tr?'Lanterna':'Tela (lanterna indisponível; toque para parar)')+': '+cod);if(!tr){f.onclick=()=>{MO=0}}try{for(const c of cod){if(!MO)break;if(c=='.'||c=='-'){await luz(true);await sleep(c=='.'?U:3*U);await luz(false);await sleep(U)}else await sleep(2*U)}}finally{MO=0;await luz(false).catch(()=>{});if(st)st.getTracks().forEach(x=>x.stop());f.style.display='none';f.onclick=null}add('mo','Fim da transmissão')}
+// ---------- Relatório
+async function relatorio(){const el=$('#rel');if(!el)return;el.textContent='Gerando…';const r=await apiGET('/api/relatorio?'+qsRede());if(r.erro){el.textContent=r.erro;return}
+const H3=t=>`<h3 style="color:#111;margin:10px 0 3px">${t}</h3>`,P=t=>`<p style="color:#111;font-size:11px;margin:2px 0">${t}</p>`,T=(cab,linhas)=>`<table style="color:#111"><tr style="background:#eee">${cab.map(c=>`<th style="color:#111;background:#eee">${c}</th>`).join('')}</tr>${linhas.map(l=>`<tr>${l.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</table>`,dt=dataH;
+const w=r.rede.wifi,c=r.comparacao_24h,cap=r.captura,det=r.deteccoes,rs=r.resumo,ag=r.agenda,ri=r.rede_inventario;
+el.innerHTML=`<div style="padding:4px"><h2 style="color:#111;margin:0">Relatório Técnico de Rede: ${esc(ri.nome)}</h2><p style="color:#555;font-size:11px">Gerado em ${esc(new Date(r.gerado).toLocaleString())} · Kit ${esc(r.kit.versao)} · ${esc(r.escopo)}</p>
+${H3('Resumo')}${P(`${esc(rs.dispositivos)} dispositivos (${esc(rs.nao_autorizados)} não autorizados) · ${esc(rs.alertas)} alertas (alto ${esc(rs.alertas_por_nivel.alto||0)}, médio ${esc(rs.alertas_por_nivel.medio||0)}, baixo ${esc(rs.alertas_por_nivel.baixo||0)}) · ${esc(rs.pacotes)} pacotes`)}
+${H3('Rede')}${P(`Inventário de: <b>${esc(ri.nome)}</b>${ri.atual?' (rede atual)':' (não é a rede atual)'}`)}${P(`IP ${esc(r.rede.ip)} · Gateway ${esc(r.rede.gateway)}`+(w&&w.ssid?` · Wi-Fi ${esc(w.ssid)} (${esc(w.rssi)} dBm, ${esc(w.frequency_mhz)} MHz)`:''))}${P('Ferramentas: '+Object.entries(r.ferramentas).map(([k,x])=>esc(k)+(x?' ✓':' ✗')).join(' · '))}
+${H3(`Dispositivos (${r.dispositivos.length})`)}${T(['IP','Nome/Fabricante','MAC','Primeira vez','Última vez','Autorizado'],r.dispositivos.map(d=>[d.ip,d.nome||d.fabricante||'?',d.mac||'-',dt(d.primeiro),dt(d.ultimo),d.autorizado?'Sim':'NÃO']))}
+${H3('Hoje × ontem')}${c.erro?P(esc(c.erro)):P(`${esc(c.atual.alvo)}: ${esc(dt(c.referencia.ts))} → ${esc(dt(c.atual.ts))} (${esc(c.horas_entre)}h) · novos: <b>${esc(c.novos.join(', ')||'nenhum')}</b> · sumiram: <b>${esc(c.sumiram.join(', ')||'nenhum')}</b> · mantidos: ${esc(c.mantidos)}`)}
+${H3(`Varreduras (${r.varreduras.length})`)}${T(['Quando','Faixa','Hosts ativos'],r.varreduras.map(x=>[dt(x.ts),x.alvo,x.hosts]))}${P('Agendamento: '+esc(ag.minutos?`a cada ${ag.minutos} min em ${ag.faixa||'faixa automática'}, só na rede ${ag.rede_nome}`+(ag.pausada?` (${ag.pausada})`:''):'desligado'))}
+${H3(`Alertas (${r.alertas.length})`)}${r.alertas.map(a=>`<div style="color:#111;font-size:11px;border-left:3px solid ${a.nivel=='alto'?'#c00':a.nivel=='medio'?'#e90':'#3a3'};padding-left:6px;margin:2px 0">${esc(dt(a.ts))} · ${esc(a.nivel)} · ${esc(a.tipo)} · ${esc(a.msg)}</div>`).join('')||P('Nenhum')}
+${H3('Detecções da captura')}${P(`Quadros deauth/disassoc: ${esc(det.deauth_total)}`)}${Object.entries(det.contextos||{}).map(([k,x])=>P(`${esc(k)}: servidores DHCP ${esc(x.servidores_dhcp.join(', ')||'nenhum')}`)).join('')}${det.eventos.map(e=>P('⚠ '+esc(dt(e.ts))+' · '+esc(e.origem||'')+' · '+esc(e.msg))).join('')||P('Nenhum ataque detectado.')}
+${H3('Captura')}${P(`${esc(cap.pacotes)} pacotes · ${fmtB(cap.bytes)} · ${esc(cap.duracao_s)} s`)}${T(['Protocolo','Pacotes'],cap.protocolos)}${T(['Domínio','Ocorrências'],cap.dominios.slice(0,20))}${cap.inseguro.length?T(['Tráfego inseguro','Pacotes'],cap.inseguro):P('Nenhum tráfego inseguro.')}
+<p style="color:#555;font-size:10px;margin-top:10px">Documento de diagnóstico defensivo. Uso restrito à rede e aos ativos sob responsabilidade do operador. Dados completos no JSON exportado.</p></div>`}
+// =================== Kit 3.3: Defesa, Bancada, Emissão, Estudo e Ajuda ===================
+const AVISO_PROPRIO='<div class="aviso">⚠ Use só na <b>sua</b> rede e nos <b>seus</b> aparelhos (ou com autorização do dono). O Kit não tem modo de disparo contínuo nem de "desligar qualquer TV por perto".</div>';
+const lista=(itens)=>(itens||[]).map(([n,t])=>`<div class="al ${esc(n)}">${esc(t)}</div>`).join('');
+const nota=(n,txt)=>n==null?'':`<div class="k" style="margin:6px 0"><b>${esc(n)}/100</b><span>${esc(txt||'')}</span></div>`;
+const html=(id,h)=>{const e=$('#o'+id);if(e)e.innerHTML=h};
+const LS={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}},set:(k,x)=>{try{localStorage.setItem(k,JSON.stringify(x))}catch{}}};
+Object.assign(ABAS,{
+Defesa:()=>`${AVISO_NAV}<div class="aviso">Aqui o Kit confere se a <b>sua</b> rede de casa está segura. Comece pelo <b>Autoteste do Wi-Fi</b>.</div>
+${card('wt','🔐 Autoteste do seu Wi-Fi','Dá uma nota para a sua rede: tipo de proteção, WPS, nome e canal.',btn('Avaliar minha rede','wifiTeste')+'<br><input id="wtS" type="password" placeholder="(opcional) digite a senha do Wi-Fi para medir a força" autocomplete="off">'+btn('Medir força da senha','senhaForca')+'<p>A senha fica só nesta tela: não é salva nem enviada.</p>')}
+${card('et','👥 Wi-Fi falso (evil twin)','Procura um roteador estranho usando o nome da sua rede. 1º toque em Aprender estando em casa.',btn('Aprender meus roteadores','etAprender')+btn('São todos meus','etTodos','y')+btn('Verificar agora','etVer'))}
+${card('dc','🌐 DNS sequestrado','Confere se o "catálogo de endereços" da internet não está sendo trocado no caminho.',btn('Verificar DNS','dnsVer'))}
+${card('au','🛡 Auditoria completa do roteador','Portas, painel, UPnP (portas abertas para a internet) e Wi-Fi, com nota e o que corrigir.',inp('auA','IP do roteador (vazio = automático)')+btn('Auditar','audit'))}
+${card('ip','🔓 Tráfego sem criptografia por aparelho','Quem na rede usa protocolos sem cadeado (precisa da Captura ligada ou de um .pcap).',btn('Ver','inseguroVer'))}
+${card('lt','🕒 Linha do tempo','Tudo o que aconteceu, em ordem: alertas, varreduras, medições.',btn('Rede atual','ltVer')+btn('Todas as redes','ltVer','','todas'))}
+${card('cf','🔔 Notificações e registro automático','Avisos no Android para alertas graves e aparelho novo; registro de bateria e celular a cada 5 min.',btn('Ver estado','cfgVer')+btn('Notificações liga/desliga','cfgTroca','','notificacoes')+btn('Registro liga/desliga','cfgTroca','','registro'))}
+${card('xp','⬇ Exportar e backup','Planilhas (CSV) e cópia do banco para trocar de celular.',btn('Aparelhos','csv','','dispositivos')+btn('Alertas','csv','','alertas')+btn('Bateria','csv','','bateria')+btn('Sinal','csv','','sinal')+btn('Backup do banco','backup'))}`,
+Bancada:()=>`
+${card('oh','Ω Lei de Ohm','Preencha dois campos e toque em Calcular.','<div class="g3">'+inp('ohV','Volts (V)')+inp('ohI','Amperes (A)')+inp('ohR','Ohms (Ω)')+'</div>'+btn('Calcular','ohm'))}
+${card('rc','🎨 Cores do resistor (4 faixas)',' ','<div class="g">'+[1,2,3,4].map(i=>`<select id="rc${i}">${(i==4?TOL:CORES).map((c,j)=>`<option value="${j}">${esc(c[0])}</option>`).join('')}</select>`).join('')+'</div>'+btn('Ler valor','resistor'))}
+${card('dv','➗ Divisor de tensão e LED','Vout = Vin × R2 / (R1 + R2). Resistor do LED = (Vfonte − Vled) / corrente.','<div class="g3">'+inp('dvI','Vin')+inp('dv1','R1 Ω')+inp('dv2','R2 Ω')+'</div>'+btn('Divisor','divisor')+'<div class="g3">'+inp('ldF','Vfonte','5')+inp('ldV','Vled','2')+inp('ldA','mA','20')+'</div>'+btn('Resistor do LED','ledR'))}
+${card('cv','🔢 Conversor dec / hex / bin / texto','Digite em qualquer formato (0x1F, 0b1010, 31 ou texto).',inp('cvA','valor')+btn('Converter','conv'))}
+${card('kw','⚡ Consumo de energia',' ','<div class="g3">'+inp('kwW','Watts')+inp('kwH','horas/dia')+inp('kwP','R$/kWh','0.85')+'</div>'+btn('Calcular','kwh'))}
+${card('gs','🎵 Gerador de sinais','Testa alto-falante, fone e amplificador. Comece com volume baixo.','<div class="g3">'+inp('gsF','Hz','1000')+`<select id="gsT">${['sine','square','triangle','sawtooth'].map(t=>`<option>${t}</option>`).join('')}</select>`+inp('gsD','segundos','2')+'</div>'+btn('Tocar','gerar')+btn('Varredura 20 Hz–20 kHz','varre')+btn('Ruído branco','ruido')+btn('Parar','gsParar','r')+'<p>DTMF (tons do telefone):</p>'+'123A456B789C*0#D'.split('').map(k=>btn(k,'dtmf','',k)).join(''))}
+${card('bt2','🔋 Registro de bateria e temperatura','O Kit grava a cada 5 min. Serve para testar carregador/cabo (corrente) e achar o que esquenta.',btn('Últimas 24 h','batVer')+'<canvas id="btC"></canvas><canvas id="btT"></canvas>')}
+${card('ms','📍 Mapa de sinal por cômodo','Vá até o cômodo, escreva o nome e toque em Marcar (leva ~3 s).',inp('msL','ex.: sala, quarto 2')+btn('Marcar aqui','sinalMarcar')+btn('Ver mapa','sinalMapa'))}
+${card('ca','📊 Canais do Wi-Fi','Quantas redes em cada canal e o melhor canal para o seu roteador.',btn('Analisar','canais'))}
+${card('nv','📐 Nível de bolha','Apoie o celular na superfície.',btn('Iniciar','nivel'))}
+${card('eb','💡 Estroboscópio (tela)','Pisca a tela numa frequência fixa para "congelar" ventilador e medir rotação. ⚠ Não use perto de quem tem epilepsia fotossensível.',inp('ebF','Hz','10')+btn('Iniciar (toque na tela para parar)','estrobo','y'))}`,
+'Emissão':()=>`${AVISO_PROPRIO}
+${card('ir','📡 Seu celular tem infravermelho?','A maioria não tem (Xiaomi/Redmi/POCO costumam ter). Sem emissor, use o adaptador IR de fone ou a TV pela rede.',btn('Verificar','irInfo')+'<select id="irModo"><option value="celular">Enviar pelo emissor IR do celular</option><option value="fone">Enviar pelo fone (adaptador IR de P2/USB-C)</option></select>')}
+${card('id','🔎 Descobrir o código da SUA TV','Escolha a marca. O Kit manda um código por vez e você diz se a TV respondeu. Aponte para a TV a 1–3 m.','<select id="idM"><option value="">marca…</option></select><label style="font-size:11px"><input type="checkbox" id="irOk" style="width:auto"> Este aparelho é meu (ou tenho autorização)</label><br>'+btn('Começar','irDesc')+'<div id="idP"></div>')}
+${card('ia','📺 Meus aparelhos','Controles salvos. "Desligar os meus" manda o código certo de cada um, um por vez.','<div id="iaL"></div>'+btn('Desligar os meus','irTodos','y'))}
+${card('im','⌨ Código manual','Protocolo + endereço + comando, ou cole um código Pronto (0000 …).',`<div class="g3"><select id="imP"><option>nec</option><option>samsung</option><option>sony</option><option>rc5</option></select>${inp('imE','endereço (0x07)')}${inp('imC','comando (0x02)')}</div>`+inp('imX','ou código Pronto')+btn('Enviar','irManual'))}
+${card('tv','🌐 TV pela rede (sem infravermelho)','Mostra o que a SUA TV deixa a rede fazer e controla TVs Roku (porta 8060).',inp('tvA','IP da TV (veja em Rede → Descoberta)')+btn('Auditar TV','tvAud')+'<br>'+['PowerOff','PowerOn','VolumeUp','VolumeDown','VolumeMute','Home'].map(k=>btn(k,'roku','',k)).join(''))}`,
+Estudo:()=>`
+<div class="aviso">Aqui você aprende como os ataques funcionam <b>sem atacar ninguém</b>: o Kit gera o tráfego de treino dentro dele mesmo e mostra o alerta.</div>
+${card('tr','🧪 Laboratório de treino','Escolha um ataque. O Kit monta um .pcap de mentira e passa pelo detector. Nada sai do celular.',['arp','dhcp','deauth','inseguro','varredura'].map(c=>btn(c,'treino','',c)).join(''))}
+<div class="c"><h2>📚 Fichas</h2><p>Toque para abrir.</p>${Object.entries(FICHAS).map(([k,[t,x]])=>`<details><summary style="font-size:12px;margin:5px 0">${esc(t)}</summary><p style="color:#b6f5c8">${x}</p></details>`).join('')}</div>
+<div class="c"><h2>🚫 O que o Kit não faz (e por quê)</h2>${NAO_FAZ.map(([a,b])=>`<p><b style="color:#ff9f9f">${esc(a)}</b><br>${esc(b)}</p>`).join('')}</div>
+<div class="c"><h2>📖 Glossário</h2>${Object.entries(GLOSS).map(([k,x])=>`<p><b style="color:#7dffa6">${esc(k)}</b>: ${esc(x)}</p>`).join('')}</div>`});
+for(const k of['Painel','Captura','Rede','Segurança','Defesa','WiFi','Aparelho','Testes','Bancada','Emissão','Estudo','Relatório']){const f=ABAS[k];delete ABAS[k];ABAS[k]=f}
+
+// ---------- Defesa
+async function wifiTeste(){out('wt','Escaneando…');const r=await apiPOST('/api/wifi/autoteste');if(r.erro)return out('wt',r.erro);html('wt',`<b>${esc(r.ssid)}</b> · ${esc((r.seguranca||[]).join(', '))}${nota(r.nota,'nota do Wi-Fi')}${lista(r.itens)}`)}
+function senhaForca(){const s=$('#wtS').value;$('#wtS').value='';if(!s)return out('wt','Digite a senha no campo acima.');let c=0;if(/[a-z]/.test(s))c+=26;if(/[A-Z]/.test(s))c+=26;if(/\d/.test(s))c+=10;if(/[^a-zA-Z0-9]/.test(s))c+=33;const bits=Math.round(s.length*Math.log2(c||1)),fraca=/^(\d+|senha|password|12345678|qwerty|admin)/i.test(s)||new Set(s).size<4;const anos=Math.pow(2,bits)/1e10/3.15e7;out('wt',`${s.length} caracteres · ~${bits} bits${fraca?' · padrão fácil de adivinhar!':''}\nTempo para adivinhar (10 bilhões de tentativas/s): ${anos<1/365?'menos de um dia':anos<1?Math.round(anos*365)+' dias':anos>1e6?'milhões de anos':Math.round(anos)+' anos'}\n${bits<50||fraca?'⚠ Fraca: use 12+ caracteres, misture palavras e números.':'✔ Boa.'}`)}
+async function etAprender(todos){out('et','…');const r=await apiPOST('/api/eviltwin/aprender',{todos:!!todos});out('et',r.erro||`Aprendi ${r.aprendidos} roteador(es) da sua rede.`)}
+function etTodos(){if(confirm('Todos os pontos de acesso com o nome da sua rede, visíveis agora, são seus (roteador e repetidores)?'))return etAprender(true)}
+async function etVer(){out('et','Escaneando…');const r=await apiPOST('/api/eviltwin');if(r.erro)return out('et',r.erro);html('et',`Rede <b>${esc(r.ssid)}</b> · ${esc(r.conhecidos)} roteador(es) conhecidos<br>${r.aviso?`<div class="al medio">${esc(r.aviso)}</div>`:''}${r.achados.map(x=>`<div class="al ${esc(x.nivel)}">${esc(x.msg)}</div>`).join('')||(r.aviso?'':'<div class="al baixo">Nenhum Wi-Fi falso com o seu nome.</div>')}<div class="al ${r.portal.ok===false?'alto':'baixo'}">Portal/interceptação: ${esc(r.portal.msg)}</div>`)}
+async function dnsVer(){out('dc','Consultando…');const r=await apiPOST('/api/dnscheck');if(r.erro)return out('dc',r.erro);html('dc',`DNS em uso: ${esc(r.servidor)} · resultado: <b>${esc(r.resumo)}</b>${lista(r.itens)}<div class="tw"><table><tr><th>Site</th><th>Rede</th><th>DNS seguro</th><th></th></tr>${r.dominios.map(d=>`<tr><td>${esc(d.dominio)}</td><td>${esc((d.rede||[]).join(' '))}</td><td>${esc((d.seguro||['?']).join(' '))}</td><td>${esc(d.veredito)}</td></tr>`).join('')}</table></div>`)}
+async function audit(){out('au','Auditando (até 30 s)…');const r=await apiPOST('/api/auditoria',{a:v('auA')});if(r.erro)return out('au',r.erro);html('au',`Roteador ${esc(r.gateway)} · conceito <b>${esc(r.conceito)}</b>${nota(r.nota,'nota do roteador')}${lista(r.itens)}<p>Portas abertas: ${esc((r.portas||[]).join(', ')||'nenhuma das comuns')} · UPnP: ${r.upnp.igd?esc((r.upnp.mapeamentos||[]).length+' porta(s) aberta(s)'):'não respondeu'}</p>`)}
+async function inseguroVer(){const r=await apiGET('/api/cap/stats');const l=r.inseguro_por_aparelho||[];html('ip',l.length?l.map(([k,n])=>`<div class="al medio">${esc(k)} · ${esc(n)} pacote(s)</div>`).join('')+'<p>Troque esses serviços por versões com criptografia (HTTPS, SSH, IMAPS) ou desligue-os.</p>':'<p>Nada inseguro visto. Ligue a Captura (aba Captura) ou importe um .pcap.</p>')}
+async function ltVer(q){out('lt','…');const r=await apiGET('/api/linha-tempo'+(q=='todas'?'?rede=todas':''));if(!Array.isArray(r))return out('lt',r.erro);html('lt',r.map(e=>`<div class="al ${e.nivel=='info'?'baixo':esc(e.nivel)}">${esc(dataH(e.ts))} · <b>${esc(e.titulo)}</b> · ${esc(e.msg)}</div>`).join('')||'<p>Nada registrado ainda.</p>')}
+async function cfgVer(){const r=await apiGET('/api/config/ver');out('cf',r.erro||`Notificações: ${r.notificacoes?'ligadas':'desligadas'}\nRegistro de bateria/celular: ${r.registro?'ligado':'desligado'}`);return r}
+async function cfgTroca(k){const at=await cfgVer();if(at.erro)return;await apiPOST('/api/config',{[k]:!at[k]});return cfgVer()}
+function csv(t){return baixar('/api/csv?tipo='+t+'&'+qsRede(),'kit-'+t+'-'+stamp()+'.csv')}
+function backup(){return baixar('/api/backup','kit-backup-'+stamp()+'.db')}
+
+// ---------- Bancada
+const CORES=[['preto',0],['marrom',1],['vermelho',2],['laranja',3],['amarelo',4],['verde',5],['azul',6],['violeta',7],['cinza',8],['branco',9],['dourado',-1],['prata',-2]];
+const TOL=[['dourado ±5%',5],['prata ±10%',10],['marrom ±1%',1],['vermelho ±2%',2],['nenhuma ±20%',20]];
+const num=id=>{const x=parseFloat(v(id).replace(',','.'));return isNaN(x)?null:x};
+const fmtU=(x,u)=>{const a=Math.abs(x);return a>=1e6?(x/1e6).toPrecision(4)+' M'+u:a>=1e3?(x/1e3).toPrecision(4)+' k'+u:a<1e-3&&a>0?(x*1e6).toPrecision(4)+' µ'+u:a<1&&a>0?(x*1e3).toPrecision(4)+' m'+u:x.toPrecision(4)+' '+u};
+function ohm(){const V=num('ohV'),I=num('ohI'),R=num('ohR');let t;if(V!=null&&I!=null)t=`R = ${fmtU(V/I,'Ω')}`;else if(V!=null&&R!=null)t=`I = ${fmtU(V/R,'A')}`;else if(I!=null&&R!=null)t=`V = ${fmtU(I*R,'V')}`;else return out('oh','Preencha dois campos.');const P=V!=null&&I!=null?V*I:V!=null&&R!=null?V*V/R:I*I*R;out('oh',t+`\nPotência = ${fmtU(P,'W')}`)}
+function resistor(){const[a,b,m]=[1,2,3].map(i=>CORES[+v('rc'+i)][1]),t=TOL[+v('rc4')][1];if(a<0||b<0)return out('rc','As duas primeiras faixas não podem ser dourado/prata.');const R=(a*10+b)*Math.pow(10,m);out('rc',`${fmtU(R,'Ω')} ±${t}% (de ${fmtU(R*(1-t/100),'Ω')} a ${fmtU(R*(1+t/100),'Ω')})`)}
+function divisor(){const i=num('dvI'),a=num('dv1'),b=num('dv2');if([i,a,b].includes(null))return out('dv','Preencha Vin, R1 e R2.');out('dv',`Vout = ${fmtU(i*b/(a+b),'V')} · corrente = ${fmtU(i/(a+b),'A')}`)}
+function ledR(){const f=num('ldF'),l=num('ldV'),m=num('ldA');if([f,l,m].includes(null)||f<=l)return out('dv','Vfonte precisa ser maior que Vled.');const R=(f-l)/(m/1000),pad=[10,12,15,18,22,27,33,39,47,56,68,82];let e=Math.pow(10,Math.floor(Math.log10(R)));const c=pad.map(p=>p*e/10).concat(pad.map(p=>p*e)).find(x=>x>=R);out('dv',`R = ${fmtU(R,'Ω')} → use ${fmtU(c,'Ω')} (valor comercial acima) · potência ${fmtU((f-l)*m/1000,'W')}`)}
+function conv(){const s=v('cvA');if(!s)return;let n=/^0x[0-9a-f]+$/i.test(s)?parseInt(s,16):/^0b[01]+$/i.test(s)?parseInt(s.slice(2),2):/^\d+$/.test(s)?parseInt(s,10):null;if(n==null){const b=new TextEncoder().encode(s);return out('cv',`Texto → hex: ${[...b].map(x=>x.toString(16).padStart(2,'0')).join(' ')}\nbin: ${[...b].map(x=>x.toString(2).padStart(8,'0')).join(' ')}`)}out('cv',`dec ${n}\nhex 0x${n.toString(16).toUpperCase()}\nbin ${n.toString(2)}\noct ${n.toString(8)}${n>=32&&n<127?'\nASCII '+String.fromCharCode(n):''}`)}
+function kwh(){const w=num('kwW'),h=num('kwH'),p=num('kwP');if([w,h,p].includes(null))return out('kw','Preencha os três.');const m=w*h*30/1000;out('kw',`${m.toFixed(1)} kWh por mês ≈ R$ ${(m*p).toFixed(2)}`)}
+let GS=[];function gsParar(){GS.forEach(n=>{try{n.stop()}catch{}});GS=[]}
+function osc(f,tipo,dur,ini=0){ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain();o.type=tipo;o.frequency.value=f;g.gain.value=.2;o.connect(g).connect(ac.destination);o.start(ac.currentTime+ini);o.stop(ac.currentTime+ini+dur);GS.push(o);return o}
+function gerar(){gsParar();const f=Math.min(22000,Math.max(10,num('gsF')||1000)),d=Math.min(60,Math.max(.1,num('gsD')||2));osc(f,v('gsT')||'sine',d);out('gs',`${f} Hz ${v('gsT')} por ${d} s`)}
+function varre(){gsParar();const o=osc(20,'sine',15);o.frequency.setValueAtTime(20,ac.currentTime);o.frequency.exponentialRampToValueAtTime(20000,ac.currentTime+15);out('gs','20 Hz → 20 kHz em 15 s. Anote quando deixa de ouvir (adultos: ~15–17 kHz).')}
+function ruido(){gsParar();ac=ac||new AudioContext();const b=ac.createBuffer(1,ac.sampleRate*3,ac.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*.2;const s=ac.createBufferSource();s.buffer=b;s.connect(ac.destination);s.start();GS.push(s);out('gs','Ruído branco por 3 s')}
+const DTMF={1:[697,1209],2:[697,1336],3:[697,1477],A:[697,1633],4:[770,1209],5:[770,1336],6:[770,1477],B:[770,1633],7:[852,1209],8:[852,1336],9:[852,1477],C:[852,1633],'*':[941,1209],0:[941,1336],'#':[941,1477],D:[941,1633]};
+function dtmf(k){DTMF[k].forEach(f=>osc(f,'sine',.25));out('gs',`DTMF ${k}: ${DTMF[k].join(' + ')} Hz`)}
+async function batVer(){const r=await apiGET('/api/medidas?tipo=bateria&horas=24');if(!Array.isArray(r))return out('bt2',r.erro);if(!r.length)return out('bt2','Sem dados ainda: o registro grava a cada 5 min com o Kit ligado (precisa do Termux:API).');chart('btC',r.map(x=>x.valor),100);const t=r.map(x=>x.extra&&x.extra.temperatura||0);chart('btT',t,Math.max(50,...t));const u=r[r.length-1],e=u.extra||{};out('bt2',`Agora: ${u.valor}% · ${e.temperatura??'?'} °C · corrente ${e.corrente_ma??'?'} mA · ${e.status||''}\nGráfico 1: carga (%) · Gráfico 2: temperatura (°C) · ${r.length} medições\nMáxima: ${Math.max(...t).toFixed(1)} °C`)}
+async function sinalMarcar(){out('ms','Medindo…');const r=await apiPOST('/api/sinal/marcar',{local:v('msL')});out('ms',r.erro||`${r.local}: ${r.media} dBm (${r.leituras.join(', ')})`)}
+async function sinalMapa(){const r=await apiGET('/api/sinal/mapa?'+qsRede());if(r.erro)return out('ms',r.erro);html('ms',r.locais.length?`<table><tr><th>Local</th><th>Média</th><th>Pior</th><th>Qualidade</th></tr>${r.locais.map(x=>`<tr><td>${esc(x.local)}</td><td>${esc(x.media)} dBm</td><td>${esc(x.pior)}</td><td>${esc(x.qualidade)}</td></tr>`).join('')}</table><p>${esc(r.dica)}</p>`:'<p>Nenhum ponto marcado ainda.</p>')}
+async function canais(){out('ca','Escaneando…');const r=await apiGET('/api/canais');if(r.erro)return out('ca',r.erro);html('ca',['2.4','5'].map(f=>`<p><b>${f} GHz</b> · melhor canal: <b>${esc(r[f].melhor)}</b></p><div id="cb${f.replace('.','')}"></div>`).join(''));['2.4','5'].forEach(f=>bars('#cb'+f.replace('.',''),Object.entries(r[f].ocupacao).map(([c,n])=>['canal '+c,n]),n=>n+' rede(s)'))}
+let NV=0;function nivel(){if(NV)return;NV=1;addEventListener('devicemotion',e=>{const a=e.accelerationIncludingGravity||{};if(a.x==null)return;const ax=Math.atan2(a.x,a.z)*57.3,ay=Math.atan2(a.y,a.z)*57.3;out('nv',`X ${ax.toFixed(1)}° · Y ${ay.toFixed(1)}° ${Math.abs(ax)<1&&Math.abs(ay)<1?'✔ NIVELADO':''}`)})}
+function estrobo(){if(!confirm('A tela vai piscar rápido. Continuar?'))return;const f=$('#full'),hz=Math.min(30,Math.max(1,num('ebF')||10));let on=0;f.innerHTML='';f.style.display='block';const t=setInterval(()=>{on^=1;f.style.background=on?'#fff':'#000'},500/hz);f.onclick=()=>{clearInterval(t);f.style.display='none';f.onclick=null}}
+
+// ---------- Emissão (IR e TV pela rede)
+let IRI=null;
+async function irInfo(){out('ir','…');const r=await apiGET('/api/ir/info');if(r.erro)return out('ir',r.erro);IRI=r;const s=$('#idM');if(s)s.innerHTML='<option value="">marca…</option>'+Object.entries(r.marcas).map(([m,n])=>`<option>${esc(m)}</option>`).join('');if(!r.tem_ir&&$('#irModo'))$('#irModo').value='fone';out('ir',r.tem_ir?`✔ Este celular tem emissor IR. Faixas: ${JSON.stringify(r.faixas)}`:'✖ '+r.motivo)}
+function irFone(freq,p){ac=ac||new AudioContext();const sr=ac.sampleRate,port=freq/2,tot=p.reduce((a,b)=>a+b,0),b=ac.createBuffer(2,Math.ceil(sr*(tot/1e6+.05)),sr),L=b.getChannelData(0),R=b.getChannelData(1);let t=0;p.forEach((d,i)=>{const n0=Math.floor(t*sr/1e6),n1=Math.floor((t+d)*sr/1e6);if(i%2==0)for(let n=n0;n<n1;n++){const s=Math.sin(2*Math.PI*port*n/sr);L[n]=s;R[n]=-s}t+=d});const s=ac.createBufferSource();s.buffer=b;s.connect(ac.destination);s.start()}
+async function irMandar(cod){if(!$('#irOk')?.checked&&!cod.salvo)throw new Error('marque "Este aparelho é meu"');if(($('#irModo')?.value||'celular')=='fone'){irFone(cod.frequencia,cod.padrao);return{ok:true}}const r=await apiPOST('/api/ir/enviar',{protocolo:cod.protocolo,endereco:cod.endereco,comando:cod.comando,pronto:cod.pronto,proprio:true});if(r.erro)throw new Error(r.erro);return r}
+const irCodigo=(m,i,tecla)=>apiGET(`/api/ir/codigo?marca=${encodeURIComponent(m)}&i=${i}`+(tecla?'&tecla='+encodeURIComponent(tecla):''));
+let DESC=null;
+async function irDesc(){if(!IRI)await irInfo();const m=v('idM');if(!m)return out('id','Escolha a marca.');if(!$('#irOk').checked)return out('id','Marque "Este aparelho é meu" para continuar.');DESC={m,i:0};return irPasso()}
+async function irPasso(){const c=await irCodigo(DESC.m,DESC.i);if(c.erro){DESC=null;return out('id',c.erro)}await irMandar(c);DESC.total=c.total;html('id',`Enviei o código ${DESC.i+1} de ${c.total} (${esc(c.protocolo)} ${esc(c.endereco)}/${esc(c.comando)}).`);$('#idP').innerHTML=`<p><b>A TV respondeu (ligou/desligou)?</b></p>${btn('✔ Sim, salvar','irSim')}${btn('✖ Não, próximo','irNao','y')}${btn('Repetir','irPasso')}${btn('Parar','irParar','r')}`}
+function irNao(){if(!DESC)return;if(++DESC.i>=DESC.total){$('#idP').innerHTML='';DESC=null;return out('id','Acabaram os códigos desta marca. Tente outra marca próxima ou use o Código manual/TV pela rede.')}return irPasso()}
+function irSim(){const nome=prompt('Nome para este aparelho (ex.: TV da sala):',DESC.m);if(!nome)return;const l=LS.get('kit_ir',[]);l.push({nome:nome.slice(0,40),marca:DESC.m,i:DESC.i});LS.set('kit_ir',l);$('#idP').innerHTML='';out('id','Salvo em Meus aparelhos.');DESC=null;irLista()}
+function irParar(){DESC=null;$('#idP').innerHTML='';out('id','Parado.')}
+function irLista(){const e=$('#iaL');if(!e)return;const l=LS.get('kit_ir',[]);e.innerHTML=l.length?l.map((x,j)=>`<p><b>${esc(x.nome)}</b> (${esc(x.marca)}) ${btn('⏻','irApar','',j)}${((IRI&&IRI.teclas[x.marca])||[]).map(t=>btn(esc(t),'irApar','',j,t)).join('')}${btn('🗑','irDel','r',j)}</p>`).join(''):'<p>Nenhum aparelho salvo. Use "Descobrir o código".</p>'}
+async function irApar(j,tecla){const x=LS.get('kit_ir',[])[j];if(!x)return;const c=await irCodigo(x.marca,x.i,tecla);if(c.erro)return out('ia',c.erro);await irMandar({...c,salvo:true});out('ia',`${x.nome}: ${tecla||'liga/desliga'} enviado.`)}
+function irDel(j){const l=LS.get('kit_ir',[]);if(!confirm('Remover '+(l[j]||{}).nome+'?'))return;l.splice(j,1);LS.set('kit_ir',l);irLista()}
+async function irTodos(){const l=LS.get('kit_ir',[]);if(!l.length)return out('ia','Nenhum aparelho salvo.');for(let j=0;j<l.length;j++){await irApar(j);await sleep(1500)}out('ia',`Enviado para ${l.length} aparelho(s) seu(s).`)}
+async function irManual(){const px=v('imX');let c;if(px){c=await apiGET('/api/ir/padrao?pronto='+encodeURIComponent(px));c.pronto=px}else{c=await apiGET(`/api/ir/padrao?protocolo=${v('imP')}&endereco=${encodeURIComponent(v('imE'))}&comando=${encodeURIComponent(v('imC'))}`);Object.assign(c,{protocolo:v('imP'),endereco:v('imE'),comando:v('imC')})}if(c.erro)return out('im',c.erro);await irMandar(c);out('im',`Enviado: ${c.frequencia} Hz, ${c.padrao.length} pulsos.`)}
+async function tvAud(){out('tv','…');const r=await apiPOST('/api/tv/auditar',{a:v('tvA')});if(r.erro)return out('tv',r.erro);html('tv',r.itens.map(x=>`<div class="al ${esc(x.nivel)}">${x.porta?esc(x.porta)+' · ':''}<b>${esc(x.servico)}</b>: ${esc(x.msg)}</div>`).join('')+(r.roku?'<p>É Roku: os botões abaixo funcionam.</p>':''))}
+async function roku(k){if(!confirm(`Enviar "${k}" para a TV ${v('tvA')}? Ela é sua?`))return;const r=await apiPOST('/api/tv/roku',{a:v('tvA'),tecla:k});out('tv',r.erro||'Enviado: '+k)}
+
+// ---------- Estudo
+async function treino(c){out('tr','Gerando e analisando…');const r=await apiPOST('/api/treino',{cenario:c});if(r.erro)return out('tr',r.erro);html('tr',`<b>${esc(r.titulo)}</b><p style="color:#b6f5c8">${esc(r.explica)}</p>${(r.deteccoes||[]).map(e=>`<div class="al ${esc(e.nivel)}">${esc(e.msg)}</div>`).join('')||'<div class="al baixo">Sem detecção de alto risco: veja os alertas de tráfego inseguro na aba Segurança.</div>'}<p>${esc(r.lidos)} pacotes de treino lidos. Os alertas aparecem marcados com [TREINO].</p>`)}
+const FICHAS={
+arp:['ARP spoofing (homem no meio)','Na rede, cada aparelho pergunta "quem é o roteador?" e confia na resposta. O atacante responde "sou eu" e passa a ver o tráfego. <b>Defesa</b>: senha forte no Wi-Fi, isolamento de clientes, HTTPS, e o alerta de ARP do Kit.'],
+dhcp_falso:['DHCP falso','Quem entra na rede pede um endereço. Um aparelho intruso pode responder antes do roteador e se colocar como caminho da internet. <b>Defesa</b>: saber quem está na rede (inventário) e o alerta de DHCP do Kit.'],
+deauth:['Deauth (derrubar o Wi-Fi)','Quadros falsos de "desconectar" derrubam os aparelhos. É proibido fazer em rede alheia. <b>Defesa</b>: WPA3 ou WPA2 com PMF ligado no roteador.'],
+evil_twin:['Wi-Fi falso (evil twin)','Alguém cria um Wi-Fi com o mesmo nome do seu, às vezes sem senha, para os aparelhos conectarem nele. <b>Defesa</b>: esqueça redes abertas, use o detector da aba Defesa, desconfie de página pedindo a senha do Wi-Fi.'],
+dns_sequestro:['DNS sequestrado','DNS é o catálogo que traduz "banco.com.br" em número. Se alguém troca o catálogo (roteador invadido, por exemplo), você vai parar num site falso com o endereço certo na barra. <b>Defesa</b>: senha de admin forte no roteador, firmware em dia, DNS seguro (DoH) no celular.'],
+wps:['WPS','Botão/PIN para conectar sem digitar a senha. O PIN de 8 dígitos é fraco e pode ser descoberto. <b>Defesa</b>: desligue o WPS.'],
+wpa:['WEP, WPA, WPA2, WPA3','São as "fechaduras" do Wi-Fi, da pior (WEP, quebra em minutos) para a melhor (WPA3). Rede aberta = sem fechadura.'],
+upnp:['UPnP','Permite que programas da rede abram portas no roteador sozinhos. Prático para jogos, perigoso se um aparelho infectado abrir porta para fora. A auditoria do roteador lista as portas abertas.'],
+varredura:['Varredura de portas','Alguém testando "portas" de um aparelho para achar serviço aberto. Na sua rede, só você deveria fazer isso (o Kit só varre faixas privadas).'],
+ra_falso:['Roteador IPv6 falso','No IPv6, o roteador se anuncia. Um intruso pode se anunciar também e desviar o tráfego. O Kit alerta quando aparecem dois anunciantes.'],
+dns_tunel:['Túnel por DNS','Dados escondidos dentro de nomes de site enormes, para fugir de bloqueio ou vazar informação. Nomes de 60+ letras são suspeitos.'],
+credencial:['Senha sem criptografia','Login em página sem cadeado (HTTP) ou Telnet/FTP: a senha passa legível. Troque a senha e use só HTTPS.'],
+novo_host:['Aparelho novo na rede','Um endereço que o Kit nunca tinha visto entrou. Se for seu, marque como autorizado na aba Segurança; se não, troque a senha do Wi-Fi.'],
+mac_trocado:['Aparelho trocado','O mesmo endereço IP agora responde com outro "RG de placa" (MAC). Pode ser troca normal de aparelho ou alguém se passando por outro.'],
+temperatura:['Aparelho quente','Bateria acima de 45 °C envelhece rápido e pode estufar. Tire da capa e pare jogos/carregamento rápido.'],
+celular_2g:['Queda para 2G','O 2G não autentica a antena. Estações falsas forçam o celular para 2G. Se acontecer onde sempre teve 4G, desative o 2G, se o aparelho permitir.'],
+ir:['Infravermelho e controle universal','O controle pisca um LED invisível ~38 mil vezes por segundo. Cada marca tem um "idioma" (NEC, Samsung, Sony, RC5). Câmeras de celular mostram o LED piscando: teste o seu controle!'],
+rolling:['Controle de portão (rolling code)','Portões modernos mudam o código a cada clique; repetir o sinal gravado não abre. O celular nem tem rádio para isso. Fica só como estudo.'],
+nfc:['NFC e tags','Tags NFC guardam texto/links. Qualquer um pode regravar uma tag destravada. Crachás MIFARE Classic têm criptografia antiga: peça ao condomínio/empresa cartões mais novos.'],
+};
+const NAO_FAZ=[['Derrubar Wi-Fi de alguém (deauth/jammer)','Interferência proposital é proibida pela Anatel e atinge terceiros. No Kit: detector + treino.'],['Quebrar senha de Wi-Fi alheio','Acesso não autorizado é crime (Lei 12.737/2012). No Kit: medir a força da SUA senha.'],['Portal falso / roubar senha','É phishing. No Kit: detector de Wi-Fi falso.'],['Testar senhas no roteador','Funcionaria igual no roteador do vizinho. No Kit: checklist manual de senha de fábrica.'],['"Desligar todas as TVs" de um lugar','Mexe em aparelhos de terceiros (loja, escola, hospital). No Kit: controle por marca, só dos seus aparelhos.'],['Clonar crachá/cartão','Fraude. No Kit: ficha de estudo sobre tags.'],['Spam Bluetooth, rastrear pessoas','Ataque e vigilância de terceiros. No Kit: fichas e detectores.']];
+const GLOSS={'IP':'O "endereço" de um aparelho na rede, como 192.168.0.10.','MAC':'O "RG" da placa de rede, gravado de fábrica (alguns celulares usam um aleatório por privacidade).','Gateway / roteador':'O aparelho que liga a sua casa à internet. Normalmente 192.168.0.1 ou 192.168.1.1.','SSID':'O nome do Wi-Fi.','BSSID':'O "RG" de cada antena/roteador que transmite o Wi-Fi.','dBm':'Força do sinal. Quanto mais perto de 0, melhor: −50 ótimo, −70 fraco, −85 quase sem sinal.','Canal':'A "faixa" de rádio do Wi-Fi. Em 2,4 GHz, use 1, 6 ou 11.','Porta':'Uma "porta de entrada" de um serviço num aparelho (80 = site, 22 = SSH...).','DNS':'Serviço que traduz nomes (google.com) em números (IP).','Pacote':'Um pedacinho de dado que viaja na rede.','.pcap':'Arquivo com pacotes gravados, que abre no Wireshark.','Captura':'Gravar os pacotes que passam pelo celular (pelo app PCAPdroid).','Varredura':'Perguntar a cada endereço da sua rede "tem alguém aí?".','Alerta':'Aviso do Kit de algo estranho: alto = veja já, médio = confira, baixo = informação.','Termux':'O app onde o Kit roda.','Termux:API':'App complementar que deixa o Kit ler Wi-Fi, bateria, sensores e o infravermelho.','HTTPS':'Site com cadeado: os dados vão embaralhados (criptografados).','UPnP':'Recurso que deixa aparelhos abrirem portas no roteador sozinhos.','IR':'Infravermelho: a luz invisível do controle remoto.','Root':'Acesso total ao Android. O Kit não precisa de root.'};
+
+// ---------- Ajuda / tutorial
+const AJUDA={
+Painel:'É o resumo: quantos pacotes passaram, quais sites, se apareceu algo inseguro e os últimos alertas. Os números só sobem com a Captura ligada (app PCAPdroid mandando para o Kit).',
+Captura:'Mostra cada pacote, como o Wireshark. Para ver tráfego de verdade: instale o PCAPdroid, em "Exportador UDP" ponha 127.0.0.1 porta 5123 e toque em iniciar. Ou importe um arquivo .pcap. O botão ⬇ .pcap salva tudo.',
+Rede:'Ferramentas para testar conexões: escreva um endereço em "Alvo" e toque numa ferramenta. Ping = "você está aí?". Traceroute = caminho até lá. DNS = de quem é o nome. Portas = o que está aberto (só na sua rede).',
+'Segurança':'É a vigia da sua rede. Toque em "Varrer a rede" para listar todos os aparelhos; marque os seus como autorizados. Depois disso, aparelho novo vira alerta. Aqui ficam também a varredura automática e a central de alertas.',
+Defesa:'Testes prontos para a rede de casa. Ordem sugerida: 1) Autoteste do Wi-Fi; 2) Aprender meus roteadores e Verificar Wi-Fi falso; 3) Verificar DNS; 4) Auditoria do roteador. Cada resultado vem com o que fazer.',
+WiFi:'Mostra o seu Wi-Fi atual, o sinal ao vivo, o sinal do 4G/5G, as redes ao redor e o teste de velocidade.',
+Aparelho:'Informações e testes do celular: bateria, NFC, Bluetooth, leitor de QR, GPS, sensores e teste de CPU.',
+Testes:'Testes de hardware: tela (pixel morto), toque, alto-falante, microfone, câmeras, lanterna, Morse e vibração.',
+Bancada:'Calculadoras de eletrônica, gerador de sons, registro da bateria, mapa de sinal por cômodo, canais do Wi-Fi, nível de bolha e estroboscópio.',
+'Emissão':'O que o celular consegue emitir para controlar os SEUS aparelhos. 1) Toque em Verificar para saber se tem infravermelho. 2) Em Descobrir, escolha a marca da sua TV, marque que ela é sua e siga as perguntas. 3) O código certo fica salvo em Meus aparelhos. Sem infravermelho: use um adaptador IR de fone (modo Fone) ou a TV pela rede.',
+Estudo:'Para aprender sem atacar ninguém: o Laboratório cria ataques de mentira dentro do Kit e mostra o alerta. As Fichas explicam cada assunto e o Glossário traduz as palavras difíceis.',
+'Relatório':'Junta tudo de uma rede num documento: escolha a rede, toque em Gerar e depois em Imprimir/PDF para salvar ou mandar para o cliente. O JSON tem um selo SHA-256 que prova que não foi alterado.'};
+const PASSOS=[
+['Bem-vindo ao Kit de Bolso 👋','Este é um kit de ferramentas para cuidar da SUA rede e testar os SEUS aparelhos. Nada aqui ataca ninguém. Vou mostrar por onde começar em 6 passos. Você pode abrir esta ajuda quando quiser no botão ❓ lá em cima.',null],
+['1. As abas','Na faixa de botões do topo ficam as áreas (abas). Arraste para o lado para ver todas. A que está verde é a aberta agora.',null],
+['2. Veja seus aparelhos','Na aba Segurança, toque em "Varrer a rede". O Kit lista tudo que está ligado no seu Wi-Fi. Marque os seus como "autorizado": assim ele avisa quando aparecer um estranho.','Segurança'],
+['3. Teste sua rede de casa','Na aba Defesa, toque em "Avaliar minha rede". Você recebe uma nota e a lista do que melhorar.','Defesa'],
+['4. Entenda os alertas','Alertas vermelhos são graves, amarelos pedem atenção, verdes são informação. Toque no ❔ ao lado de um alerta para ler a explicação simples.','Segurança'],
+['5. Aprenda sem risco','Na aba Estudo, o Laboratório simula ataques DENTRO do Kit para você ver como ele detecta. As fichas explicam tudo em português simples.','Estudo'],
+['6. Gere o relatório','Na aba Relatório, toque em Gerar e depois em Imprimir/PDF. Pronto para guardar ou mandar.','Relatório'],
+['Pronto! ✔','Se travar em qualquer tela, toque em ❓ Ajuda e escolha "Esta tela". O Glossário explica palavras como IP, MAC, DNS e dBm.',null]];
+let TUT={m:'passos',i:0};
+function ajuda(m){if(m)TUT.m=m;const e=$('#tut');e.hidden=false;const t=TUT.m;let corpo='';
+ if(t=='passos'){const[ti,tx,ab]=PASSOS[TUT.i];corpo=`<h2>${esc(ti)}</h2><p>${esc(tx)}</p><p style="color:#7a9c85">Passo ${TUT.i+1} de ${PASSOS.length}</p>${TUT.i?btn('◀ Voltar','tutMove','',-1):''}${TUT.i<PASSOS.length-1?btn('Próximo ▶','tutMove','',1):btn('Fechar','tutFechar')}${ab?btn('Mostrar a aba '+esc(ab),'tutIr','y',ab):''}`}
+ else if(t=='tela')corpo=`<h2>Aba ${esc(aba)}</h2><p>${esc(AJUDA[aba]||'')}</p>`;
+ else if(t=='gloss')corpo='<h2>Glossário</h2>'+Object.entries(GLOSS).map(([k,x])=>`<p><b>${esc(k)}</b>: ${esc(x)}</p>`).join('');
+ else corpo=`<h2>${esc((FICHAS[t]||['Alerta'])[0])}</h2><p>${(FICHAS[t]||['','Sem ficha para este alerta ainda.'])[1]}</p>`;
+ e.innerHTML=`<div class="tb">${btn('Primeiro uso','ajuda',t=='passos'?'on':'','passos')}${btn('Esta tela','ajuda',t=='tela'?'on':'','tela')}${btn('Glossário','ajuda',t=='gloss'?'on':'','gloss')}${btn('✖','tutFechar','r')}</div><div class="tc">${corpo}</div>`;LS.set('kit_tut_visto',1)}
+function tutMove(d){TUT.i=Math.max(0,Math.min(PASSOS.length-1,TUT.i+d));ajuda('passos')}
+function tutIr(a){$('#tut').hidden=true;ACOES.aba(a)}
+function tutFechar(){$('#tut').hidden=true}
+function explicar(tipo){ajuda(tipo)}
+Object.assign(ACOES,{wifiTeste,senhaForca,etAprender:()=>etAprender(false),etTodos,etVer,dnsVer,audit,inseguroVer,ltVer,cfgVer,cfgTroca,csv,backup,ohm,resistor,divisor,ledR,conv,kwh,gerar,varre,ruido,gsParar,dtmf,batVer,sinalMarcar,sinalMapa,canais,nivel,estrobo,irInfo,irDesc,irPasso,irNao,irSim,irParar,irApar,irDel,irTodos,irManual,tvAud,roku,treino,ajuda,tutMove,tutIr,tutFechar,explicar});
+const _draw0=draw;draw=function(){_draw0();if(aba=='Emissão'){irLista();if(SERVIDOR)irInfo().then(irLista)}};
+if(!LS.get('kit_tut_visto',0))setTimeout(()=>ajuda('passos'),800);
+
+// ---------- Início
+async function iniciar(){draw();redeTopo();if(!SERVIDOR){$('#st').textContent='modo navegador';sondar();return}try{INFO=await apiGET('/api/info');if(INFO.lan&&!isSecureContext)$('#st').textContent='modo rede (HTTP)';await redesLoad();draw()}catch{offline(true)}capTick();setInterval(()=>{if(!document.hidden)redesLoad().catch(()=>{})},60000)}
+iniciar();
+</script></body></html>

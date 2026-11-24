@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+kit.db
+kit.db-*
+.token
+.token.tmp
+*.zip
+*.pcap
+*.pcapng
+kit.log
+.servidor
+.ligando
+partidas
